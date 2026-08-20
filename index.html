@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============ SEO (replace placeholders in one place: src/data/site.ts) ============ -->
+    <title>[YOUR_NAME] · AI Agent / Robotics / Software Engineer</title>
+    <meta name="description" content="Developer portfolio of [YOUR_NAME] - AI Agent / Robotics / Software Engineer building intelligent systems that connect AI agents, software and physical machines." />
+    <meta name="keywords" content="AI Engineer, Robotics Engineer, AI Agent, ROS2, LLM, Software Engineer, Portfolio" />
+    <meta name="author" content="[YOUR_NAME]" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://your-github-username.github.io/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="[YOUR_NAME] - Developer Portfolio" />
+    <meta property="og:title" content="[YOUR_NAME] · AI Agent / Robotics / Software Engineer" />
+    <meta property="og:description" content="I build intelligent systems that connect AI agents, software and physical machines." />
+    <meta property="og:url" content="https://your-github-username.github.io/" />
+    <meta property="og:image" content="https://your-github-username.github.io/og/og-image.png" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[YOUR_NAME] · AI Agent / Robotics / Software Engineer" />
+    <meta name="twitter:description" content="I build intelligent systems that connect AI agents, software and physical machines." />
+    <meta name="twitter:image" content="https://your-github-username.github.io/og/og-image.png" />
+
+    <meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-512.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Structured data: Person -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "[YOUR_NAME]",
+        "url": "https://your-github-username.github.io/",
+        "jobTitle": "AI Agent / Robotics / Software Engineer",
+        "sameAs": [
+          "https://github.com/your-github-username",
+          "https://www.linkedin.com/in/your-linkedin"
+        ]
+      }
+    </script>
+
+    <!-- Theme pre-paint: prevents dark-mode flash. Reads the saved preference
+         (light | dark | system) and applies it before first render. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme') || 'system';
+          var dark =
+            stored === 'dark' ||
+            (stored === 'system' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.dataset.theme = stored;
+        } catch (e) {
+          /* localStorage unavailable - keep default */
+        }
+      })();
+    </script>
+
+    <!-- SPA deep-link recovery for GitHub Pages:
+         when a refresh on /projects/foo hits 404.html, it redirects to
+         /?p=/projects/foo and this snippet restores the real path.
+         __BASE__ is replaced with the real base path at build time
+         ('' on username.github.io, '/repo' on project pages). -->
+    <script>
+      (function (l) {
+        if (l.search[1] === '/') {
+          var base = '__BASE__';
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, base + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="max-width: 640px; margin: 80px auto; padding: 0 24px; font-family: system-ui, sans-serif">
+        <h1>[YOUR_NAME]</h1>
+        <p>AI Agent / Robotics / Software Engineer - developer portfolio.</p>
+        <p>This site requires JavaScript. Please enable it to view the full portfolio.</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

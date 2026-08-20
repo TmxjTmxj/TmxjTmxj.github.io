@@ -1,0 +1,219 @@
+/* ==========================================================================
+   Design system - single source of truth for colors, typography, spacing,
+   radius, shadows, breakpoints and motion.
+   Tailwind CSS v4 - tokens are exposed as utilities (bg-canvas, text-ink, ...)
+   ========================================================================== */
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Typography */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* Light theme (GitHub-light inspired, engineer-grade contrast) */
+  --color-canvas: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-elevated: #ffffff;
+  --color-line: #d8dee4;
+  --color-line-strong: #afb8c1;
+  --color-ink: #1f2328;
+  --color-ink-soft: #424a53;
+  --color-ink-muted: #59636e;
+  --color-accent: #0969da;
+  --color-accent-hover: #0860ca;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #ddf4ff;
+  --color-code: #0d1117;
+  --color-code-ink: #e6edf3;
+  --color-green: #1a7f37;
+  --color-green-soft: #dafbe1;
+  --color-amber: #9a6700;
+  --color-amber-soft: #fff8c5;
+
+  /* Radius */
+  --radius-card: 0.75rem;
+  --radius-btn: 0.5rem;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px rgb(31 35 40 / 5%), 0 8px 24px rgb(140 149 159 / 14%);
+  --shadow-card-hover: 0 2px 4px rgb(31 35 40 / 6%),
+    0 16px 40px rgb(140 149 159 / 22%);
+}
+
+/* Dark theme - GitHub-dark inspired (#0d1117 / #161b22), not pure black */
+.dark {
+  --color-canvas: #0d1117;
+  --color-surface: #161b22;
+  --color-elevated: #1c2128;
+  --color-line: #30363d;
+  --color-line-strong: #8b949e;
+  --color-ink: #e6edf3;
+  --color-ink-soft: #b1bac4;
+  --color-ink-muted: #9198a1;
+  --color-accent: #4493f8;
+  --color-accent-hover: #58a1fa;
+  --color-accent-ink: #0d1117;
+  --color-accent-soft: rgb(56 139 253 / 0.16);
+  --color-code: #010409;
+  --color-code-ink: #e6edf3;
+  --color-green: #3fb950;
+  --color-green-soft: rgb(63 185 80 / 0.15);
+  --color-amber: #d29922;
+  --color-amber-soft: rgb(210 153 34 / 0.15);
+
+  --shadow-card: 0 1px 2px rgb(1 4 9 / 40%), 0 10px 28px rgb(1 4 9 / 50%);
+  --shadow-card-hover: 0 2px 4px rgb(1 4 9 / 50%),
+    0 18px 44px rgb(1 4 9 / 60%);
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-canvas text-ink font-sans antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+/* Focus states - clearly visible for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Reusable utilities
+   -------------------------------------------------------------------------- */
+/* Page container */
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+
+/* Mono engineering overline above section headings */
+.section-label {
+  @apply font-mono text-[13px] tracking-wider text-accent;
+}
+
+.section-label::before {
+  content: '// ';
+}
+
+/* Subtle engineering grid used in the hero */
+.bg-grid {
+  background-image: linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 25%, transparent 78%);
+}
+
+/* Terminal blinking cursor */
+.cursor-blink::after {
+  content: '▊';
+  margin-left: 2px;
+  color: var(--color-green);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scroll reveal (driven by IntersectionObserver via <Reveal/>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  will-change: opacity, transform;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cards */
+.card {
+  @apply rounded-[var(--radius-card)] border border-line bg-surface shadow-card;
+}
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--color-line-strong);
+}
+
+/* Small mono chip (tags, badges) */
+.chip {
+  @apply inline-flex items-center gap-1 rounded-md border border-line bg-surface px-2 py-0.5 font-mono text-xs text-ink-soft;
+}
+
+/* Line clamp helpers */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion - every animation respects this
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Respect user preference in JS-driven animations too */
+@media (prefers-reduced-motion: no-preference) {
+  .filter-enter > * {
+    animation: fadeInUp 0.35s ease both;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

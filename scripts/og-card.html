@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: #0d1117; color: #e6edf3;
+    font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 56px 72px;
+    position: relative;
+  }
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, #21262d 1px, transparent 1px),
+      linear-gradient(to bottom, #21262d 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(ellipse 100% 80% at 60% 0%, black 30%, transparent 80%);
+    mask-image: radial-gradient(ellipse 100% 80% at 60% 0%, black 30%, transparent 80%);
+  }
+  .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 65% 25%, rgba(68,147,248,0.16), transparent 70%);
+  }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .tag { color: #4493f8; font-size: 22px; letter-spacing: 0.08em; margin-bottom: 20px; }
+  h1 { font-size: 76px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+  .role { font-size: 30px; color: #4493f8; margin-top: 18px; font-weight: 600; }
+  .row {
+    display: flex; align-items: center; gap: 20px; margin-top: 26px;
+    font-size: 20px; color: #8b949e;
+  }
+  .dot { color: #3fb950; }
+  .url { font-size: 22px; color: #8b949e; margin-top: 8px; }
+  .bar { position: absolute; left: 0; top: 0; width: 100%; height: 8px; background: linear-gradient(90deg, #4493f8, #3fb950); }
+  .corner { position: absolute; right: 56px; top: 44px; font-size: 20px; color: #8b949e; }
+</style>
+</head>
+<body>
+  <div class="bar"></div>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="corner mono">&gt;_ placeholder</div>
+  <div>
+    <p class="mono tag">// developer-portfolio</p>
+    <h1>[YOUR_NAME]</h1>
+    <p class="role">AI Agent / Robotics / Software Engineer</p>
+    <p class="row mono"><span class="dot">●</span> AI · Robotics · Intelligent Systems · Open Source</p>
+    <p class="url mono">github.com/your-github-username</p>
+  </div>
+</body>
+</html>

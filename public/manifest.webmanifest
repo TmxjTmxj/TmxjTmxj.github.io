@@ -1,0 +1,13 @@
+{
+  "name": "[YOUR_NAME] - Developer Portfolio",
+  "short_name": "[YOUR_NAME]",
+  "description": "AI Agent / Robotics / Software Engineer - developer portfolio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8fa",
+  "theme_color": "#0d1117",
+  "icons": [
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

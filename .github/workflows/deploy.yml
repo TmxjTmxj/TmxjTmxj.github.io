@@ -1,0 +1,68 @@
+# Deploy to GitHub Pages
+# ---------------------------------------------------------------
+# git push -> Actions -> build -> deploy to GitHub Pages. No local
+# build needed: just commit and push.
+#
+# Repository settings required (one time):
+#   Settings > Pages > Build and deployment > Source: "GitHub Actions"
+#
+# For a USER site (username.github.io) the default base "/" is correct.
+# For a PROJECT page (username.github.io/<repo>), set a repository
+# variable VITE_BASE=/<repo>/ in Settings > Secrets and variables >
+# Actions > Variables. The build below reads it automatically.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          # Repository variable VITE_BASE (empty for user sites).
+          VITE_BASE: ${{ vars.VITE_BASE || '' }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

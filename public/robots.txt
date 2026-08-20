@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Replace the placeholder domain in src/data/site.ts (siteConfig.url)
+# and here, then this points Google at your sitemap.
+Sitemap: https://your-github-username.github.io/sitemap.xml
