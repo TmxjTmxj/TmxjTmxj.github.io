@@ -47,6 +47,8 @@ jobs:
         env:
           # Repository variable VITE_BASE (empty for user sites).
           VITE_BASE: ${{ vars.VITE_BASE || '' }}
+          # Authenticated GitHub stats baked in at build time.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

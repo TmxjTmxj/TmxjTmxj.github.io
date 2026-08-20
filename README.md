@@ -212,7 +212,7 @@ Keep the same filename — the site links to it by name. Update `resumeUpdated` 
 
 ### GitHub Statistics
 
-Set `githubUsername` in `src/data/profile.ts`. The homepage then shows live profile stats (repos, stars, followers) and top languages from the GitHub Public API (10-minute client-side cache, 6s timeout). If the API fails, the section hides itself — the rest of the site is unaffected. Set `githubRepo` on projects to decorate cards with live stars/forks/language. **No GitHub data is ever faked.**
+The homepage shows live profile stats (repos, stars, followers) and top languages. Data is **fetched at build time** (`scripts/fetch-github-stats.mjs`, authenticated via `GITHUB_TOKEN` in Actions) and baked into `public/github-stats.json`, so visitors never hit API rate limits. When the baked data is missing or older than 24h, the client falls back to the GitHub Public API (10-minute cache, 6s timeout) — and if everything fails, the section simply hides. Set `githubRepo` on projects to decorate cards with live stars/forks/language. **No GitHub data is ever faked.**
 
 ### SEO / Social Preview
 

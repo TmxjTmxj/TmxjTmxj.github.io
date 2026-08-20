@@ -10,6 +10,9 @@ dist-ssr/
 .env
 .env.*
 
+# Generated at build time (scripts/fetch-github-stats.mjs)
+public/github-stats.json
+
 # Logs
 logs/
 *.log

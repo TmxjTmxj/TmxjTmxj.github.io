@@ -9,9 +9,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build && node scripts/postbuild.mjs",
+    "build": "tsc --noEmit && node scripts/fetch-github-stats.mjs && vite build && node scripts/postbuild.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
+    "github:stats": "node scripts/fetch-github-stats.mjs",
     "assets:placeholder": "node scripts/make-placeholder-assets.mjs",
     "resume:placeholder": "node scripts/make-resume.mjs"
   },
