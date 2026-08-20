@@ -1,14 +1,15 @@
 /** Home preview of the experience timeline - latest two entries + link. */
 import { Link } from 'react-router-dom';
 import { ArrowRight, Building2 } from 'lucide-react';
-import { copy } from '../../data/site';
-import { experiences } from '../../data/experience';
+import { useI18n } from '../../i18n/context';
+import { useExperiences } from '../../i18n/use-content';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 import { Badge } from '../ui/Badge';
 
 export function ExperiencePreview() {
-  const latest = experiences.slice(0, 2);
+  const { t } = useI18n();
+  const latest = useExperiences().slice(0, 2);
 
   return (
     <section className="border-t border-line bg-surface" aria-labelledby="exp-preview-title">
@@ -16,8 +17,8 @@ export function ExperiencePreview() {
         <Reveal>
           <SectionHeading
             id="exp-preview-title"
-            label="experience"
-            title={copy.home.experienceTitle}
+            label={t.home.experienceLabel}
+            title={t.home.experienceTitle}
           />
         </Reveal>
         <div className="grid gap-6 md:grid-cols-2">
@@ -44,7 +45,7 @@ export function ExperiencePreview() {
                   to="/experience"
                   className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
                 >
-                  {copy.home.viewAll} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  {t.home.viewAll} <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </article>
             </Reveal>

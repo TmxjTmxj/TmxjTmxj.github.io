@@ -3,6 +3,7 @@
  * Structure mirrors the recruiter's question flow:
  * Overview → Background → Problem → Solution → Architecture → My Role →
  * Key Features → Engineering Challenges → Results → Gallery → Repository.
+ * Fully localized: data comes from useProject(), copy from useI18n().
  */
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -15,8 +16,9 @@ import {
   Github,
   MonitorPlay,
 } from 'lucide-react';
-import { getProject, projects } from '../data/projects';
-import { copy, siteConfig, categoryLabels } from '../data/site';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useProject, useProfile, useProjects } from '../i18n/use-content';
 import { usePageMeta } from '../lib/seo';
 import { asset } from '../lib/utils';
 import { useRepoStats } from '../lib/github';
@@ -49,35 +51,40 @@ function Section({
 
 export function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const project = slug ? getProject(slug) : undefined;
+  const { t } = useI18n();
+  const profile = useProfile();
+  const project = useProject(slug);
+  const projects = useProjects(); // localized order for prev/next navigation
   const stats = useRepoStats(project?.githubRepo);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const gallery = useMemo<GalleryImage[]>(() => {
     if (!project) return [];
     const images: GalleryImage[] = [
-      { src: project.image, alt: project.imageAlt, caption: 'Cover' },
+      { src: project.image, alt: project.imageAlt, caption: t.detail.coverCaption },
     ];
     if (project.architecture?.type === 'image' && project.architecture.src) {
       images.push({
         src: project.architecture.src,
         alt: project.architecture.alt ?? 'Architecture diagram',
-        caption: project.architecture.caption ?? copy.detail.architecture,
+        caption: project.architecture.caption ?? t.detail.architecture,
       });
     }
     if (project.gallery) images.push(...project.gallery);
     return images;
-  }, [project]);
+  }, [project, t]);
 
   usePageMeta({
-    title: project ? `${project.title} · ${siteConfig.author}` : `Project not found · ${siteConfig.author}`,
+    title: project ? `${project.title} · ${profile.name}` : t.seo.notFoundTitle(profile.name),
     description: project?.description ?? 'Project not found',
     path: `/projects/${slug ?? ''}`,
     image: project ? project.image : siteConfig.ogImage,
+    author: profile.name,
   });
 
   if (!project) return <NotFoundPage />;
 
+  // Prev / next navigation follows the localized list order.
   const index = projects.findIndex((p) => p.slug === project.slug);
   const prevProject = index > 0 ? projects[index - 1] : undefined;
   const nextProject = index < projects.length - 1 ? projects[index + 1] : undefined;
@@ -89,7 +96,7 @@ export function ProjectDetailPage() {
         to="/projects"
         className="inline-flex items-center gap-1.5 text-sm text-ink-muted transition-colors hover:text-ink"
       >
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" /> {copy.detail.back}
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" /> {t.detail.back}
       </Link>
 
       {/* Header band */}
@@ -97,11 +104,11 @@ export function ProjectDetailPage() {
         <div className="flex flex-wrap items-center gap-2">
           {project.categories.map((c) => (
             <Badge key={c} tone="accent">
-              {categoryLabels[c]}
+              {t.categories[c]}
             </Badge>
           ))}
           <span className="font-mono text-sm text-ink-muted">{project.year}</span>
-          {project.isPlaceholder && <Badge tone="warn">{copy.projects.placeholderBadge}</Badge>}
+          {project.isPlaceholder && <Badge tone="warn">{t.projects.placeholderBadge}</Badge>}
           {stats && (
             <span className="font-mono text-xs text-ink-muted">
               ★ {stats.stars} · ⑂ {stats.forks}
@@ -115,17 +122,17 @@ export function ProjectDetailPage() {
         <div className="mt-6 flex flex-wrap gap-3">
           {project.github && (
             <Button href={project.github} size="md">
-              <Github className="h-4 w-4" aria-hidden="true" /> {copy.projects.github}
+              <Github className="h-4 w-4" aria-hidden="true" /> {t.projects.github}
             </Button>
           )}
           {project.demo && (
             <Button href={project.demo} variant="secondary">
-              <MonitorPlay className="h-4 w-4" aria-hidden="true" /> {copy.projects.demo}
+              <MonitorPlay className="h-4 w-4" aria-hidden="true" /> {t.projects.demo}
             </Button>
           )}
           {project.docs && (
             <Button href={project.docs} variant="secondary">
-              <BookOpen className="h-4 w-4" aria-hidden="true" /> {copy.projects.docs}
+              <BookOpen className="h-4 w-4" aria-hidden="true" /> {t.projects.docs}
             </Button>
           )}
         </div>
@@ -134,21 +141,21 @@ export function ProjectDetailPage() {
       <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_300px]">
         {/* ============ Main column ============ */}
         <div className="min-w-0 space-y-12">
-          <Section id="overview" title={copy.detail.overview}>
+          <Section id="overview" title={t.detail.overview}>
             <p className="text-[15px] leading-relaxed text-ink-soft">{project.longDescription}</p>
           </Section>
 
-          <Section id="background" title={copy.detail.background}>
+          <Section id="background" title={t.detail.background}>
             <p className="text-[15px] leading-relaxed text-ink-soft">{project.background}</p>
           </Section>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <Section id="problem" title={copy.detail.problem}>
+            <Section id="problem" title={t.detail.problem}>
               <p className="rounded-lg border-l-2 border-amber bg-amber-soft/60 p-4 text-[15px] leading-relaxed text-ink-soft">
                 {project.problem}
               </p>
             </Section>
-            <Section id="solution" title={copy.detail.solution}>
+            <Section id="solution" title={t.detail.solution}>
               <p className="rounded-lg border-l-2 border-green bg-green-soft/60 p-4 text-[15px] leading-relaxed text-ink-soft">
                 {project.solution}
               </p>
@@ -156,12 +163,12 @@ export function ProjectDetailPage() {
           </div>
 
           {project.architecture && (
-            <Section id="architecture" title={copy.detail.architecture}>
+            <Section id="architecture" title={t.detail.architecture}>
               {project.architecture.type === 'image' && project.architecture.src ? (
                 <figure className="card overflow-hidden">
                   <img
                     src={asset(project.architecture.src)}
-                    alt={project.architecture.alt ?? copy.detail.architecture}
+                    alt={project.architecture.alt ?? t.detail.architecture}
                     loading="lazy"
                     decoding="async"
                     className="w-full object-contain"
@@ -181,19 +188,19 @@ export function ProjectDetailPage() {
             </Section>
           )}
 
-          <Section id="role" title={copy.detail.role}>
+          <Section id="role" title={t.detail.role}>
             <p className="text-[15px] leading-relaxed text-ink-soft">{project.role}</p>
           </Section>
 
-          <Section id="tech-stack" title={copy.detail.techStack}>
+          <Section id="tech-stack" title={t.detail.techStack}>
             <div className="flex flex-wrap gap-2">
-              {project.technologies.map((t) => (
-                <Badge key={t}>{t}</Badge>
+              {project.technologies.map((tech) => (
+                <Badge key={tech}>{tech}</Badge>
               ))}
             </div>
           </Section>
 
-          <Section id="features" title={copy.detail.keyFeatures}>
+          <Section id="features" title={t.detail.keyFeatures}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {project.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-2.5 rounded-lg border border-line bg-surface p-3.5 text-sm text-ink-soft">
@@ -205,7 +212,7 @@ export function ProjectDetailPage() {
           </Section>
 
           {project.challenges && project.challenges.length > 0 && (
-            <Section id="challenges" title={copy.detail.challenges}>
+            <Section id="challenges" title={t.detail.challenges}>
               <div className="space-y-6">
                 {project.challenges.map((c, i) => (
                   <article key={i} className="card p-6">
@@ -218,9 +225,9 @@ export function ProjectDetailPage() {
                     <dl className="mt-4 grid gap-4 md:grid-cols-3">
                       {(
                         [
-                          [copy.detail.challengeSteps[1], c.analysis, 'text-ink-soft'],
-                          [copy.detail.challengeSteps[2], c.solution, 'text-ink-soft'],
-                          [copy.detail.challengeSteps[3], c.result, 'text-green'],
+                          [t.detail.challengeSteps[1], c.analysis, 'text-ink-soft'],
+                          [t.detail.challengeSteps[2], c.solution, 'text-ink-soft'],
+                          [t.detail.challengeSteps[3], c.result, 'text-green'],
                         ] as const
                       ).map(([step, text, color]) => (
                         <div key={step}>
@@ -238,7 +245,7 @@ export function ProjectDetailPage() {
           )}
 
           {project.results && project.results.length > 0 && (
-            <Section id="results" title={copy.detail.results}>
+            <Section id="results" title={t.detail.results}>
               <ul className="space-y-2.5">
                 {project.results.map((r) => (
                   <li key={r} className="flex items-start gap-2.5 text-[15px] text-ink-soft">
@@ -251,7 +258,7 @@ export function ProjectDetailPage() {
           )}
 
           {gallery.length > 0 && (
-            <Section id="gallery" title={copy.detail.screenshots}>
+            <Section id="gallery" title={t.detail.screenshots}>
               <div className="grid gap-4 sm:grid-cols-2">
                 {gallery.map((image, i) => (
                   <button
@@ -259,7 +266,7 @@ export function ProjectDetailPage() {
                     type="button"
                     onClick={() => setLightboxIndex(i)}
                     className="group relative overflow-hidden rounded-lg border border-line bg-surface"
-                    aria-label={`${copy.detail.openGallery}: ${image.alt}`}
+                    aria-label={`${t.detail.openGallery}: ${image.alt}`}
                   >
                     <img
                       src={asset(image.src)}
@@ -285,7 +292,7 @@ export function ProjectDetailPage() {
                 <div>
                   <h2 id="repository-title" className="flex items-center gap-2 text-lg font-semibold">
                     <Github className="h-5 w-5" aria-hidden="true" />
-                    {copy.detail.repository}
+                    {t.detail.repository}
                   </h2>
                   <p className="mt-1.5 font-mono text-sm text-code-ink/70">{project.github}</p>
                 </div>
@@ -295,7 +302,7 @@ export function ProjectDetailPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-hover"
                 >
-                  {copy.detail.repositoryCta} <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                  {t.detail.repositoryCta} <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
             </section>
@@ -310,7 +317,7 @@ export function ProjectDetailPage() {
               >
                 <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" />
                 <span>
-                  <span className="block font-mono text-xs">{copy.detail.prevProject}</span>
+                  <span className="block font-mono text-xs">{t.detail.prevProject}</span>
                   {prevProject.title}
                 </span>
               </Link>
@@ -323,7 +330,7 @@ export function ProjectDetailPage() {
                 className="group inline-flex items-center gap-2 text-right text-sm text-ink-muted transition-colors hover:text-ink sm:ml-auto"
               >
                 <span>
-                  <span className="block font-mono text-xs">{copy.detail.nextProject}</span>
+                  <span className="block font-mono text-xs">{t.detail.nextProject}</span>
                   {nextProject.title}
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -333,42 +340,42 @@ export function ProjectDetailPage() {
         </div>
 
         {/* ============ Sidebar: quick facts ============ */}
-        <aside className="hidden lg:block" aria-label={copy.detail.quickFacts}>
+        <aside className="hidden lg:block" aria-label={t.detail.quickFacts}>
           <div className="sticky top-24 space-y-6">
             <div className="card p-5">
               <h2 className="border-b border-line pb-3 font-mono text-sm font-medium">
-                {copy.detail.quickFacts}
+                {t.detail.quickFacts}
               </h2>
               <dl className="mt-3 space-y-3 text-sm">
                 <div>
-                  <dt className="font-mono text-xs text-ink-muted">{copy.detail.roleFact}</dt>
+                  <dt className="font-mono text-xs text-ink-muted">{t.detail.roleFact}</dt>
                   <dd className="mt-0.5 text-ink-soft">{project.role}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono text-xs text-ink-muted">{copy.detail.yearFact}</dt>
+                  <dt className="font-mono text-xs text-ink-muted">{t.detail.yearFact}</dt>
                   <dd className="mt-0.5">{project.year}</dd>
                 </div>
                 <div>
-                  <dt className="font-mono text-xs text-ink-muted">{copy.detail.categoryFact}</dt>
+                  <dt className="font-mono text-xs text-ink-muted">{t.detail.categoryFact}</dt>
                   <dd className="mt-0.5 flex flex-wrap gap-1.5">
                     {project.categories.map((c) => (
                       <Badge key={c} tone="accent">
-                        {categoryLabels[c]}
+                        {t.categories[c]}
                       </Badge>
                     ))}
                   </dd>
                 </div>
                 {project.status && (
                   <div>
-                    <dt className="font-mono text-xs text-ink-muted">{copy.detail.statusFact}</dt>
-                    <dd className="mt-0.5 text-ink-soft">{copy.projects[project.status]}</dd>
+                    <dt className="font-mono text-xs text-ink-muted">{t.detail.statusFact}</dt>
+                    <dd className="mt-0.5 text-ink-soft">{t.projects[project.status]}</dd>
                   </div>
                 )}
                 <div>
-                  <dt className="font-mono text-xs text-ink-muted">{copy.detail.stackFact}</dt>
+                  <dt className="font-mono text-xs text-ink-muted">{t.detail.stackFact}</dt>
                   <dd className="mt-1.5 flex flex-wrap gap-1.5">
-                    {project.technologies.map((t) => (
-                      <Badge key={t}>{t}</Badge>
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech}>{tech}</Badge>
                     ))}
                   </dd>
                 </div>
@@ -376,7 +383,7 @@ export function ProjectDetailPage() {
             </div>
 
             <div className="card p-5">
-              <h2 className="font-mono text-sm font-medium">{copy.detail.repository}</h2>
+              <h2 className="font-mono text-sm font-medium">{t.detail.repository}</h2>
               {project.github ? (
                 <a
                   href={project.github}
@@ -384,12 +391,10 @@ export function ProjectDetailPage() {
                   rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
                 >
-                  <Github className="h-4 w-4" aria-hidden="true" /> {copy.projects.github} ↗
+                  <Github className="h-4 w-4" aria-hidden="true" /> {t.projects.github} ↗
                 </a>
               ) : (
-                <p className="mt-3 text-sm text-ink-muted">
-                  Repository link coming soon - this project is not public yet.
-                </p>
+                <p className="mt-3 text-sm text-ink-muted">{t.detail.repoComingSoon}</p>
               )}
             </div>
           </div>

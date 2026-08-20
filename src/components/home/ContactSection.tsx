@@ -1,19 +1,21 @@
 /** Home contact CTA - one strong ask, mailto primary, socials secondary. */
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { copy } from '../../data/site';
-import { profile } from '../../data/profile';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 import { Reveal } from '../ui/Reveal';
 
 export function ContactSection() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   return (
     <section className="border-t border-line bg-surface" aria-labelledby="contact-cta-title">
       <div className="container-page py-16 text-center sm:py-20">
         <Reveal>
-          <p className="section-label mb-2 justify-center">{copy.home.contactLabel}</p>
-          <h2 id="contact-cta-title" className="text-2xl font-bold tracking-tight sm:text-3xl">
-            {copy.contact.subtitle}
+          <p className="section-label mb-2 justify-center">{t.home.contactLabel}</p>          <h2 id="contact-cta-title" className="text-2xl font-bold tracking-tight sm:text-3xl">
+            {t.contact.subtitle}
           </h2>
-          <p className="mt-3 text-lg font-medium text-accent">{copy.contact.cta}</p>
+          <p className="mt-3 text-lg font-medium text-accent">{t.contact.cta}</p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -42,7 +44,7 @@ export function ContactSection() {
               LinkedIn
             </a>
           </div>
-          <p className="mt-6 font-mono text-xs text-ink-muted">{copy.contact.responseNote}</p>
+          <p className="mt-6 font-mono text-xs text-ink-muted">{t.contact.responseNote}</p>
         </Reveal>
       </div>
     </section>

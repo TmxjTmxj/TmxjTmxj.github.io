@@ -1,11 +1,11 @@
 /**
  * Standard project card for the Projects grid: cover, meta, description,
- * tech chips and links. Whole card lifts on hover.
+ * tech chips and links. Receives an already-localized project object.
  */
 import { Link } from 'react-router-dom';
 import { ArrowRight, Github } from 'lucide-react';
 import type { Project } from '../../types';
-import { copy, categoryLabels } from '../../data/site';
+import { useI18n } from '../../i18n/context';
 import { asset } from '../../lib/utils';
 import { Badge } from '../ui/Badge';
 
@@ -17,6 +17,7 @@ export function ProjectCard({
   /** h2 when cards sit directly under the page h1 (Projects page), h3 inside a section. */
   headingLevel?: 'h2' | 'h3';
 }) {
+  const { t } = useI18n();
   const Heading = headingLevel;
   return (
     <article className="card card-hover group flex h-full flex-col overflow-hidden">
@@ -39,9 +40,9 @@ export function ProjectCard({
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge tone="accent">{categoryLabels[project.categories[0]]}</Badge>
+          <Badge tone="accent">{t.categories[project.categories[0]]}</Badge>
           <span className="font-mono text-xs text-ink-muted">{project.year}</span>
-          {project.isPlaceholder && <Badge tone="warn">{copy.projects.placeholderBadge}</Badge>}
+          {project.isPlaceholder && <Badge tone="warn">{t.projects.placeholderBadge}</Badge>}
         </div>
 
         <Heading className="mt-3 text-lg font-bold tracking-tight">
@@ -54,8 +55,8 @@ export function ProjectCard({
         </p>
 
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.technologies.slice(0, 4).map((t) => (
-            <Badge key={t}>{t}</Badge>
+          {project.technologies.slice(0, 4).map((tech) => (
+            <Badge key={tech}>{tech}</Badge>
           ))}
           {project.technologies.length > 4 && (
             <Badge className="text-ink-muted">+{project.technologies.length - 4}</Badge>
@@ -67,7 +68,7 @@ export function ProjectCard({
             to={`/projects/${project.slug}`}
             className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
           >
-            {copy.projects.viewProject} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            {t.projects.viewProject} <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
           {project.github && (
             <a

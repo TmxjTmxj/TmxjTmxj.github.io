@@ -5,7 +5,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { asset } from '../../lib/utils';
-import { copy } from '../../data/site';
+import { useI18n } from '../../i18n/context';
 import type { GalleryImage } from '../../types';
 
 export function Lightbox({
@@ -21,6 +21,7 @@ export function Lightbox({
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const image = images[index];
+  const { t } = useI18n();
 
   const prev = useCallback(
     () => onNavigate((index - 1 + images.length) % images.length),
@@ -62,7 +63,7 @@ export function Lightbox({
         ref={closeRef}
         onClick={onClose}
         className="absolute right-4 top-4 rounded-md bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
-        aria-label={copy.lightbox.close}
+        aria-label={t.lightbox.close}
       >
         <X className="h-5 w-5" aria-hidden="true" />
       </button>
@@ -75,7 +76,7 @@ export function Lightbox({
               prev();
             }}
             className="absolute left-2 top-1/2 -translate-y-1/2 rounded-md bg-white/10 p-2 text-white transition-colors hover:bg-white/20 sm:left-6"
-            aria-label={copy.lightbox.prev}
+            aria-label={t.lightbox.prev}
           >
             <ChevronLeft className="h-6 w-6" aria-hidden="true" />
           </button>
@@ -85,7 +86,7 @@ export function Lightbox({
               next();
             }}
             className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md bg-white/10 p-2 text-white transition-colors hover:bg-white/20 sm:right-6"
-            aria-label={copy.lightbox.next}
+            aria-label={t.lightbox.next}
           >
             <ChevronRight className="h-6 w-6" aria-hidden="true" />
           </button>

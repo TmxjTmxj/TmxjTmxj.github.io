@@ -1,7 +1,7 @@
 /** Category filter chips: All + every category present in the data. */
 import { cn } from '../../lib/utils';
-import { categoryLabels, copy } from '../../data/site';
-import { allCategories } from '../../data/projects';
+import { useI18n } from '../../i18n/context';
+import { useAllCategories } from '../../i18n/use-content';
 import type { Category } from '../../types';
 
 export type CategoryFilterValue = 'all' | Category;
@@ -15,17 +15,18 @@ export function ProjectFilters({
   onChange: (v: CategoryFilterValue) => void;
   counts: Record<string, number>;
 }) {
-  const options: CategoryFilterValue[] = ['all', ...allCategories];
+  const { t } = useI18n();
+  const options: CategoryFilterValue[] = ['all', ...useAllCategories()];
 
   return (
     <div
       className="flex flex-wrap gap-2"
       role="group"
-      aria-label={copy.projects.filterLabel}
+      aria-label={t.projects.filterLabel}
     >
       {options.map((option) => {
         const active = value === option;
-        const label = option === 'all' ? copy.projects.all : categoryLabels[option];
+        const label = option === 'all' ? t.projects.all : t.categories[option];
         return (
           <button
             key={option}

@@ -3,12 +3,15 @@
  * live terminal on the right; quick stats bar below. Subtle grid backdrop.
  */
 import { ArrowRight, Github, MapPin } from 'lucide-react';
-import { copy } from '../../data/site';
-import { profile } from '../../data/profile';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 import { Button } from '../ui/Button';
 import { Terminal } from './Terminal';
 
 export function Hero() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   return (
     <section className="relative overflow-hidden border-b border-line" aria-labelledby="hero-title">
       {/* Subtle engineering grid + accent glow */}
@@ -20,7 +23,7 @@ export function Hero() {
 
       <div className="container-page relative grid items-center gap-12 pb-16 pt-28 sm:pt-32 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pb-24">
         <div>
-          <p className="section-label mb-3">{copy.hero.greeting}</p>
+          <p className="section-label mb-3">{t.hero.greeting}</p>
           <h1
             id="hero-title"
             className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
@@ -36,14 +39,14 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button to="/projects" size="lg">
-              {copy.hero.ctaProjects} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              {t.hero.ctaProjects} <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Button href={profile.resumeUrl} variant="secondary" size="lg">
-              {copy.hero.ctaResume}
+              {t.hero.ctaResume}
             </Button>
-            <Button href={profile.github} variant="ghost" size="lg" ariaLabel={copy.hero.ctaGithub}>
+            <Button href={profile.github} variant="ghost" size="lg" ariaLabel={t.hero.ctaGithub}>
               <Github className="h-4.5 w-4.5" aria-hidden="true" />
-              {copy.hero.ctaGithub}
+              {t.hero.ctaGithub}
             </Button>
           </div>
 

@@ -1,10 +1,12 @@
 /** Hero terminal - typed `$ command` lines with a blinking cursor. */
 import { useTypewriter } from '../../hooks/useTypewriter';
-import { copy } from '../../data/site';
-import { profile } from '../../data/profile';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 
 export function Terminal() {
-  const lines: string[] = [...copy.terminal.lines];
+  const { t } = useI18n();
+  const profile = useProfile();
+  const lines: string[] = [...t.terminal.lines];
   const typed = useTypewriter(lines);
 
   return (
@@ -26,7 +28,7 @@ export function Terminal() {
       {/* Body */}
       <div className="min-h-[210px] p-4 font-mono text-[13px] leading-relaxed sm:p-5">
         <p aria-hidden="true" className="text-code-ink/80">
-          # {copy.hero.availability}
+          # {profile.availability}
         </p>
         {typed.map((line, i) => {
           const isCommand = i % 2 === 0;

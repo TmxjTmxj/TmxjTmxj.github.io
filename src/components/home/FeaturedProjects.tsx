@@ -3,25 +3,27 @@
  * card, the rest in a 2-column grid, plus a "view all" link.
  */
 import { ArrowRight } from 'lucide-react';
-import { copy } from '../../data/site';
-import { featuredProjects } from '../../data/projects';
+import { Link } from 'react-router-dom';
+import { useI18n } from '../../i18n/context';
+import { useFeaturedProjects } from '../../i18n/use-content';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 import { FeaturedProjectCard } from '../projects/FeaturedProjectCard';
 import { ProjectCard } from '../projects/ProjectCard';
-import { Link } from 'react-router-dom';
 
 export function FeaturedProjects() {
-  const [first, ...rest] = featuredProjects;
+  const { t } = useI18n();
+  const featured = useFeaturedProjects();
+  const [first, ...rest] = featured;
 
   return (
     <section className="container-page py-16 sm:py-20" aria-labelledby="featured-title">
       <Reveal>
         <SectionHeading
           id="featured-title"
-          label="featured-projects"
-          title={copy.home.featuredTitle}
-          subtitle={copy.home.featuredSubtitle}
+          label={t.home.featuredLabel}
+          title={t.home.featuredTitle}
+          subtitle={t.home.featuredSubtitle}
         />
       </Reveal>
 
@@ -46,7 +48,7 @@ export function FeaturedProjects() {
           to="/projects"
           className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-line-strong hover:bg-elevated"
         >
-          {copy.home.viewAll} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          {t.home.viewAll} <ArrowRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </Reveal>
     </section>

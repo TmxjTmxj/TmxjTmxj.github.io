@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Github, Linkedin, Mail } from 'lucide-react';
-import { copy, navLinks } from '../../data/site';
-import { profile } from '../../data/profile';
+import { navLinks } from '../../data/site';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useI18n();
+  const profile = useProfile();
 
   return (
     <footer className="border-t border-line bg-surface">
@@ -16,7 +19,7 @@ export function Footer() {
             {profile.handle}
           </p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-ink-muted">{profile.tagline}</p>
-          <p className="mt-3 font-mono text-xs text-ink-muted">{copy.footer.tagline}</p>
+          <p className="mt-3 font-mono text-xs text-ink-muted">{t.footer.tagline}</p>
         </div>
 
         {/* Nav */}
@@ -25,7 +28,7 @@ export function Footer() {
             {navLinks.map((link) => (
               <li key={link.to}>
                 <Link to={link.to} className="text-ink-muted transition-colors hover:text-ink">
-                  {link.label}
+                  {t.nav[link.key]}
                 </Link>
               </li>
             ))}
@@ -70,10 +73,10 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-ink-muted sm:flex-row">
           <p>
-            © {year} {profile.name}. {copy.footer.copyright}
+            © {year} {profile.name}. {t.footer.copyright}
           </p>
           <p className="font-mono">
-            {copy.footer.builtWith} · {copy.footer.hostedOn}
+            {t.footer.builtWith} · {t.footer.hostedOn}
           </p>
         </div>
       </div>

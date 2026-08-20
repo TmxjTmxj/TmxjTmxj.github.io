@@ -2,8 +2,9 @@
 import { Link } from 'react-router-dom';
 import { Briefcase, ExternalLink, FlaskConical, Rocket, Trophy, Users } from 'lucide-react';
 import type { ComponentType } from 'react';
-import { copy, siteConfig } from '../data/site';
-import { experiences } from '../data/experience';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useExperiences, useProfile } from '../i18n/use-content';
 import type { ExperienceType } from '../types';
 import { usePageMeta } from '../lib/seo';
 import { Badge } from '../components/ui/Badge';
@@ -18,19 +19,24 @@ const typeIcons: Record<ExperienceType, ComponentType<{ className?: string }>> =
 };
 
 export function ExperiencePage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+  const experiences = useExperiences();
+
   usePageMeta({
-    title: `Experience · ${siteConfig.author}`,
-    description: 'Internships, research, competitions and organizations with concrete responsibilities and results.',
+    title: t.seo.experienceTitle(profile.name),
+    description: t.seo.experienceDescription,
     path: '/experience',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   return (
     <div className="container-page pb-20 pt-28 sm:pt-32">
       <header className="max-w-2xl">
-        <p className="section-label mb-2">experience</p>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.experience.title}</h1>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{copy.experience.subtitle}</p>
+        <p className="section-label mb-2">{t.section.experience}</p>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.experience.title}</h1>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{t.experience.subtitle}</p>
       </header>
 
       <ol className="relative mt-12 space-y-10 border-l border-line pl-8 sm:pl-10">
@@ -52,7 +58,7 @@ export function ExperiencePage() {
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
                         <h2 className="text-lg font-bold tracking-tight sm:text-xl">{item.org}</h2>
-                        {item.isPlaceholder && <Badge tone="warn">{copy.projects.placeholderBadge}</Badge>}
+                        {item.isPlaceholder && <Badge tone="warn">{t.projects.placeholderBadge}</Badge>}
                       </div>
                       <p className="mt-1 text-[15px] text-ink-soft">{item.role}</p>
                     </div>
@@ -78,9 +84,9 @@ export function ExperiencePage() {
 
                   {item.tech && item.tech.length > 0 && (
                     <div className="mt-5 flex flex-wrap items-center gap-1.5 border-t border-line pt-4">
-                      <span className="mr-1 font-mono text-xs text-ink-muted">{copy.experience.techLabel}:</span>
-                      {item.tech.map((t) => (
-                        <Badge key={t}>{t}</Badge>
+                      <span className="mr-1 font-mono text-xs text-ink-muted">{t.experience.techLabel}:</span>
+                      {item.tech.map((tech) => (
+                        <Badge key={tech}>{tech}</Badge>
                       ))}
                     </div>
                   )}

@@ -1,8 +1,9 @@
 /** Skills - grouped cards with honest proficiency tags, no fake percentages. */
 import { Bot, BrainCircuit, Code2, DraftingCompass, Wrench } from 'lucide-react';
 import type { ComponentType } from 'react';
-import { copy, siteConfig } from '../data/site';
-import { skillGroups, currentlyExploring } from '../data/skills';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useSkillGroups, useCurrentlyExploring, useProfile } from '../i18n/use-content';
 import type { SkillGroup, SkillLevel } from '../types';
 import { usePageMeta } from '../lib/seo';
 import { Badge } from '../components/ui/Badge';
@@ -17,23 +18,29 @@ const groupIcons: Record<SkillGroup['icon'], ComponentType<{ className?: string 
 };
 
 export function SkillsPage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+  const groups = useSkillGroups();
+  const exploring = useCurrentlyExploring();
+
   usePageMeta({
-    title: `Skills · ${siteConfig.author}`,
-    description: 'Technologies and domains: AI agents, robotics, programming, engineering and tooling.',
+    title: t.seo.skillsTitle(profile.name),
+    description: t.seo.skillsDescription,
     path: '/skills',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   return (
     <div className="container-page pb-20 pt-28 sm:pt-32">
       <header className="max-w-2xl">
-        <p className="section-label mb-2">skills</p>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.skills.title}</h1>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{copy.skills.subtitle}</p>
+        <p className="section-label mb-2">{t.section.skills}</p>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.skills.title}</h1>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{t.skills.subtitle}</p>
       </header>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {skillGroups.map((group, i) => {
+        {groups.map((group, i) => {
           const Icon = groupIcons[group.icon];
           return (
             <Reveal key={group.id} delayMs={i * 60}>
@@ -50,7 +57,7 @@ export function SkillsPage() {
                       <span className="text-[15px] text-ink-soft">{skill.name}</span>
                       {skill.level && (
                         <span className="font-mono text-[11px] uppercase tracking-wide text-ink-muted">
-                          {copy.skills.level[skill.level as SkillLevel]}
+                          {t.skills.level[skill.level as SkillLevel]}
                         </span>
                       )}
                     </li>
@@ -61,11 +68,11 @@ export function SkillsPage() {
           );
         })}
 
-        <Reveal delayMs={skillGroups.length * 60}>
+        <Reveal delayMs={groups.length * 60}>
           <div className="card h-full border-dashed p-6">
-            <p className="section-label mb-3">{copy.skills.exploringLabel}</p>
+            <p className="section-label mb-3">{t.skills.exploringLabel}</p>
             <div className="flex flex-wrap gap-1.5">
-              {currentlyExploring.map((topic) => (
+              {exploring.map((topic) => (
                 <Badge key={topic}>{topic}</Badge>
               ))}
             </div>

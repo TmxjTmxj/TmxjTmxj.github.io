@@ -5,14 +5,16 @@
  */
 import { Link } from 'react-router-dom';
 import { ExternalLink, Github, GitFork, Star, Users } from 'lucide-react';
-import { copy } from '../../data/site';
-import { profile } from '../../data/profile';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 import { useGitHubProfile } from '../../lib/github';
 import { formatCount } from '../../lib/utils';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../ui/Reveal';
 
 export function GitHubStats() {
+  const { t } = useI18n();
+  const profile = useProfile();
   const { user, repos, loading } = useGitHubProfile(profile.githubUsername);
 
   // Nothing configured yet -> honest setup hint.
@@ -21,11 +23,11 @@ export function GitHubStats() {
       <section className="border-t border-line bg-surface" aria-labelledby="github-title">
         <div className="container-page py-16 sm:py-20">
           <Reveal>
-            <SectionHeading id="github-title" label="github" title={copy.home.githubTitle} />
+            <SectionHeading id="github-title" label={t.home.githubLabel} title={t.home.githubTitle} />
             <div className="card p-8 text-center">
               <Github className="mx-auto h-8 w-8 text-ink-muted" aria-hidden="true" />
               <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink-muted">
-                {copy.githubSection.unconfigured}
+                {t.githubSection.unconfigured}
               </p>
               <code className="mt-4 inline-block rounded-md bg-elevated px-3 py-1.5 font-mono text-xs text-ink-soft">
                 src/data/profile.ts → githubUsername
@@ -54,7 +56,7 @@ export function GitHubStats() {
     <section className="border-t border-line bg-surface" aria-labelledby="github-title">
       <div className="container-page py-16 sm:py-20">
         <Reveal>
-          <SectionHeading id="github-title" label="github" title={copy.home.githubTitle} />
+          <SectionHeading id="github-title" label={t.home.githubLabel} title={t.home.githubTitle} />
         </Reveal>
         <Reveal>
           <div className="card grid gap-0 lg:grid-cols-[1.1fr_1fr]">
@@ -77,19 +79,19 @@ export function GitHubStats() {
               <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
                 <div>
                   <p className="font-mono text-xl font-semibold">{user.public_repos}</p>
-                  <p className="text-xs text-ink-muted">{copy.githubSection.repos}</p>
+                  <p className="text-xs text-ink-muted">{t.githubSection.repos}</p>
                 </div>
                 <div>
                   <p className="font-mono text-xl font-semibold">{formatCount(totalStars)}</p>
-                  <p className="text-xs text-ink-muted">{copy.githubSection.stars}</p>
+                  <p className="text-xs text-ink-muted">{t.githubSection.stars}</p>
                 </div>
                 <div>
                   <p className="font-mono text-xl font-semibold">{user.followers}</p>
-                  <p className="text-xs text-ink-muted">{copy.githubSection.followers}</p>
+                  <p className="text-xs text-ink-muted">{t.githubSection.followers}</p>
                 </div>
                 <div>
                   <p className="font-mono text-xl font-semibold">{user.following}</p>
-                  <p className="text-xs text-ink-muted">{copy.githubSection.following}</p>
+                  <p className="text-xs text-ink-muted">{t.githubSection.following}</p>
                 </div>
               </div>
               <a
@@ -98,15 +100,15 @@ export function GitHubStats() {
                 rel="noopener noreferrer"
                 className="mt-auto inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
               >
-                {copy.githubSection.visitProfile} <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                {t.githubSection.visitProfile} <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
 
             {/* Top languages */}
             <div className="border-t border-line p-6 sm:p-8 lg:border-l-0 lg:border-t-0">
-              <h3 className="font-mono text-sm font-medium">{copy.githubSection.topLanguages}</h3>
+              <h3 className="font-mono text-sm font-medium">{t.githubSection.topLanguages}</h3>
               {topLanguages.length === 0 ? (
-                <p className="mt-4 text-sm text-ink-muted">{copy.githubSection.unavailable}</p>
+                <p className="mt-4 text-sm text-ink-muted">{t.githubSection.unavailable}</p>
               ) : (
                 <ul className="mt-4 space-y-3">
                   {topLanguages.map(([lang, count]) => (
@@ -134,15 +136,15 @@ export function GitHubStats() {
               <div className="mt-6 flex flex-wrap gap-4 font-mono text-xs text-ink-muted">
                 <span className="inline-flex items-center gap-1.5">
                   <Star className="h-3.5 w-3.5 text-amber" aria-hidden="true" />
-                  {formatCount(totalStars)} stars
+                  {formatCount(totalStars)} {t.githubSection.starsWord}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <GitFork className="h-3.5 w-3.5" aria-hidden="true" />
-                  {formatCount(repos.reduce((s, r) => s + r.forks_count, 0))} forks
+                  {formatCount(repos.reduce((s, r) => s + r.forks_count, 0))} {t.githubSection.forksWord}
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <Users className="h-3.5 w-3.5" aria-hidden="true" />
-                  {repos.length} repos listed
+                  {repos.length} {t.githubSection.reposListed}
                 </span>
               </div>
             </div>
@@ -152,7 +154,7 @@ export function GitHubStats() {
               to="/projects"
               className="text-sm font-medium text-accent transition-colors hover:text-accent-hover"
             >
-              Browse the projects →
+              {t.githubSection.browseProjects}
             </Link>
           </p>
         </Reveal>

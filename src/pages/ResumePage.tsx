@@ -1,17 +1,22 @@
 /** Resume page - prominent View/Download CTAs for public/resume/resume.pdf. */
 import { Download, Eye, Info } from 'lucide-react';
-import { copy, siteConfig } from '../data/site';
-import { profile } from '../data/profile';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useProfile } from '../i18n/use-content';
 import { asset } from '../lib/utils';
 import { usePageMeta } from '../lib/seo';
 import { Reveal } from '../components/ui/Reveal';
 
 export function ResumePage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   usePageMeta({
-    title: `Resume · ${siteConfig.author}`,
+    title: t.seo.resumeTitle(profile.name),
     description: `Resume of ${profile.name} - ${profile.title}.`,
     path: '/resume',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   return (
@@ -20,13 +25,13 @@ export function ResumePage() {
         <div className="card overflow-hidden">
           <div className="grid items-center gap-8 p-8 sm:p-12 lg:grid-cols-[1fr_auto]">
             <div>
-              <p className="section-label mb-2">resume</p>
-              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.resume.title}</h1>
+              <p className="section-label mb-2">{t.section.resume}</p>
+              <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.resume.title}</h1>
               <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ink-muted">
-                {copy.resume.subtitle}
+                {t.resume.subtitle}
               </p>
               <p className="mt-5 font-mono text-sm text-ink-soft">
-                {copy.resume.updated} <span className="text-accent">{profile.resumeUpdated}</span>
+                {t.resume.updated} <span className="text-accent">{profile.resumeUpdated}</span>
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -36,14 +41,14 @@ export function ResumePage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-hover"
                 >
-                  <Eye className="h-4 w-4" aria-hidden="true" /> {copy.resume.view}
+                  <Eye className="h-4 w-4" aria-hidden="true" /> {t.resume.view}
                 </a>
                 <a
                   href={asset(profile.resumeUrl)}
                   download
                   className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-line-strong hover:bg-elevated"
                 >
-                  <Download className="h-4 w-4" aria-hidden="true" /> {copy.resume.download}
+                  <Download className="h-4 w-4" aria-hidden="true" /> {t.resume.download}
                 </a>
               </div>
             </div>
@@ -63,8 +68,8 @@ export function ResumePage() {
           <div className="flex items-start gap-3 border-t border-line bg-surface px-8 py-5 sm:px-12">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
             <div>
-              <h2 className="text-sm font-semibold">{copy.resume.tipTitle}</h2>
-              <p className="mt-1 text-sm leading-relaxed text-ink-muted">{copy.resume.tip}</p>
+              <h2 className="text-sm font-semibold">{t.resume.tipTitle}</h2>
+              <p className="mt-1 text-sm leading-relaxed text-ink-muted">{t.resume.tip}</p>
               <code className="mt-2 inline-block rounded-md bg-elevated px-2.5 py-1 font-mono text-xs text-ink-soft">
                 public/resume/resume.pdf
               </code>

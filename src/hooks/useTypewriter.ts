@@ -1,8 +1,9 @@
 /**
  * Typewriter effect for the hero terminal.
  * Respects prefers-reduced-motion: all lines render instantly.
+ * Re-typing restarts automatically when the lines change (language switch).
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -12,6 +13,17 @@ export function useTypewriter(lines: string[], speed = 28): string[] {
   const [typed, setTyped] = useState<string[]>([]);
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const linesRef = useRef(lines);
+
+  // Language switch (or any line change) restarts the typing sequence.
+  useEffect(() => {
+    if (linesRef.current !== lines) {
+      linesRef.current = lines;
+      setTyped([]);
+      setLineIndex(0);
+      setCharIndex(0);
+    }
+  }, [lines]);
 
   useEffect(() => {
     if (prefersReducedMotion()) {

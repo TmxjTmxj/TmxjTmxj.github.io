@@ -3,8 +3,9 @@
  * who → what I build → best projects → experience → skills →
  * open source → about → contact.
  */
+import { useI18n } from '../i18n/context';
+import { useProfile } from '../i18n/use-content';
 import { usePageMeta } from '../lib/seo';
-import { siteConfig } from '../data/site';
 import { Hero } from '../components/home/Hero';
 import { StatsBar } from '../components/home/StatsBar';
 import { FeaturedProjects } from '../components/home/FeaturedProjects';
@@ -15,11 +16,15 @@ import { AboutPreview } from '../components/home/AboutPreview';
 import { ContactSection } from '../components/home/ContactSection';
 
 export function HomePage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   usePageMeta({
-    title: siteConfig.title,
-    description: siteConfig.description,
+    title: t.seo.homeTitle,
+    description: t.seo.homeDescription,
     path: '/',
-    image: siteConfig.ogImage,
+    image: '/og/og-image.png',
+    author: profile.name,
   });
 
   return (

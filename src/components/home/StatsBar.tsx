@@ -1,7 +1,8 @@
 /** Quick metrics under the hero - fully config-driven (src/data/profile.ts). */
-import { profile } from '../../data/profile';
+import { useProfile } from '../../i18n/use-content';
 
 export function StatsBar() {
+  const profile = useProfile();
   return (
     <section aria-label="Quick stats" className="border-b border-line bg-surface">
       <div className="container-page grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">

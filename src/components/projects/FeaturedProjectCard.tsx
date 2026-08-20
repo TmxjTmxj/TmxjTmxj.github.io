@@ -1,17 +1,19 @@
 /**
  * Large featured project card: cover + Problem/Solution highlights +
  * tech stack + links. GitHub stars/forks/language are layered on when
- * githubRepo is configured and the API is reachable - never required.
+ * githubRepo is configured - never required.
+ * Receives an already-localized project object from the page.
  */
 import { Link } from 'react-router-dom';
 import { ArrowRight, CircleDot, GitFork, Github, Star } from 'lucide-react';
 import type { Project } from '../../types';
-import { copy, categoryLabels } from '../../data/site';
+import { useI18n } from '../../i18n/context';
 import { asset, cn, formatCount } from '../../lib/utils';
 import { useRepoStats } from '../../lib/github';
 import { Badge } from '../ui/Badge';
 
 export function FeaturedProjectCard({ project }: { project: Project }) {
+  const { t } = useI18n();
   const stats = useRepoStats(project.githubRepo);
 
   return (
@@ -20,7 +22,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
       <Link
         to={`/projects/${project.slug}`}
         className="group relative block overflow-hidden border-b border-line bg-surface lg:border-b-0 lg:border-r"
-        aria-label={`${project.title} - open case study`}
+        aria-label={`${project.title} - ${t.detail.overview}`}
         tabIndex={-1}
       >
         <img
@@ -39,11 +41,11 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
         <div className="flex flex-wrap items-center gap-2">
           {project.categories.map((c) => (
             <Badge key={c} tone="accent">
-              {categoryLabels[c]}
+              {t.categories[c]}
             </Badge>
           ))}
           <span className="font-mono text-xs text-ink-muted">{project.year}</span>
-          {project.isPlaceholder && <Badge tone="warn">{copy.projects.placeholderBadge}</Badge>}
+          {project.isPlaceholder && <Badge tone="warn">{t.projects.placeholderBadge}</Badge>}
           {stats && (
             <span className="ml-auto flex items-center gap-3 font-mono text-xs text-ink-muted">
               <span className="inline-flex items-center gap-1">
@@ -69,11 +71,11 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
         {/* Problem -> Solution, compact */}
         <dl className="mt-4 space-y-2 border-l-2 border-line pl-4 text-sm">
           <div>
-            <dt className="font-mono text-xs uppercase tracking-wide text-amber">{copy.detail.problem}</dt>
+            <dt className="font-mono text-xs uppercase tracking-wide text-amber">{t.detail.problem}</dt>
             <dd className="clamp-2 mt-0.5 text-ink-muted">{project.problem}</dd>
           </div>
           <div>
-            <dt className="font-mono text-xs uppercase tracking-wide text-green">{copy.detail.solution}</dt>
+            <dt className="font-mono text-xs uppercase tracking-wide text-green">{t.detail.solution}</dt>
             <dd className="clamp-2 mt-0.5 text-ink-muted">{project.solution}</dd>
           </div>
         </dl>
@@ -90,8 +92,8 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
 
         {/* Tech stack */}
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.technologies.slice(0, 5).map((t) => (
-            <Badge key={t}>{t}</Badge>
+          {project.technologies.slice(0, 5).map((tech) => (
+            <Badge key={tech}>{tech}</Badge>
           ))}
           {project.technologies.length > 5 && (
             <Badge className="text-ink-muted">+{project.technologies.length - 5}</Badge>
@@ -106,7 +108,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               'inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-hover',
             )}
           >
-            {copy.projects.viewCaseStudy} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            {t.projects.viewCaseStudy} <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
           {project.github && (
             <a
@@ -116,7 +118,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-4 py-2 text-sm text-ink transition-colors hover:border-line-strong hover:bg-elevated"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
-              {copy.projects.github}
+              {t.projects.github}
             </a>
           )}
           {project.demo && (
@@ -126,7 +128,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               rel="noopener noreferrer"
               className="text-sm text-accent transition-colors hover:text-accent-hover hover:underline"
             >
-              {copy.projects.demo} ↗
+              {t.projects.demo} ↗
             </a>
           )}
         </div>

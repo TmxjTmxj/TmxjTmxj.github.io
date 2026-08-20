@@ -1,17 +1,19 @@
 /**
  * Sticky navbar: route-aware active states, GitHub / Email quick links,
- * 3-state theme toggle (light/dark/system) and a mobile hamburger menu.
+ * language toggle (EN / 中文), 3-state theme toggle and a mobile menu.
  */
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Github, Mail, Menu, Monitor, Moon, Sun, X } from 'lucide-react';
+import { Github, Languages, Mail, Menu, Monitor, Moon, Sun, X } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { navLinks, copy } from '../../data/site';
-import { profile } from '../../data/profile';
+import { navLinks } from '../../data/site';
+import { useI18n } from '../../i18n/context';
+import { useProfile } from '../../i18n/use-content';
 import { useTheme } from '../../hooks/useTheme';
 
 function ThemeToggle() {
   const { theme, cycleTheme } = useTheme();
+  const { t } = useI18n();
   const icon =
     theme === 'light' ? (
       <Sun className="h-4.5 w-4.5" aria-hidden="true" />
@@ -25,10 +27,26 @@ function ThemeToggle() {
       type="button"
       onClick={cycleTheme}
       className="rounded-md p-2 text-ink-muted transition-colors hover:bg-elevated hover:text-ink"
-      aria-label={`${copy.nav.themeLabel} (current: ${theme})`}
-      title={`Theme: ${theme} — click to switch`}
+      aria-label={`${t.nav.themeLabel} (current: ${theme})`}
+      title={`Theme: ${theme}`}
     >
       {icon}
+    </button>
+  );
+}
+
+function LanguageToggle() {
+  const { lang, toggleLang, t } = useI18n();
+  return (
+    <button
+      type="button"
+      onClick={toggleLang}
+      className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 font-mono text-xs font-medium text-ink-muted transition-colors hover:bg-elevated hover:text-ink"
+      aria-label={t.lang.toggleLabel}
+      title={t.lang.toggleLabel}
+    >
+      <Languages className="h-4 w-4" aria-hidden="true" />
+      {lang === 'en' ? '中文' : 'EN'}
     </button>
   );
 }
@@ -37,6 +55,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { t, lang, toggleLang } = useI18n();
+  const profile = useProfile();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -54,6 +74,8 @@ export function Navbar() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
+
+  const linkLabel = (key: (typeof navLinks)[number]['key']) => t.nav[key];
 
   return (
     <header
@@ -92,12 +114,12 @@ export function Navbar() {
                 )
               }
             >
-              {link.label}
+              {linkLabel(link.key)}
             </NavLink>
           ))}
         </div>
 
-        {/* Right side: GitHub / Email / theme / hamburger */}
+        {/* Right side: GitHub / Email / language / theme / hamburger */}
         <div className="flex items-center gap-1">
           <a
             href={profile.github}
@@ -117,11 +139,12 @@ export function Navbar() {
           >
             <Mail className="h-4.5 w-4.5" aria-hidden="true" />
           </a>
+          <LanguageToggle />
           <ThemeToggle />
           <button
             type="button"
             className="rounded-md p-2 text-ink-muted transition-colors hover:bg-elevated hover:text-ink lg:hidden"
-            aria-label={open ? copy.nav.closeLabel : copy.nav.menuLabel}
+            aria-label={open ? t.nav.closeLabel : t.nav.menuLabel}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -152,10 +175,10 @@ export function Navbar() {
                 )
               }
             >
-              {link.label}
+              {linkLabel(link.key)}
             </NavLink>
           ))}
-          <div className="mt-2 flex gap-2 border-t border-line pt-3">
+          <div className="mt-2 flex items-center gap-2 border-t border-line pt-3">
             <a
               href={profile.github}
               target="_blank"
@@ -170,6 +193,17 @@ export function Navbar() {
             >
               <Mail className="h-4 w-4" aria-hidden="true" /> Email
             </a>
+            <button
+              type="button"
+              onClick={() => {
+                toggleLang();
+                setOpen(false);
+              }}
+              className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm text-ink-soft hover:bg-elevated"
+            >
+              <Languages className="h-4 w-4" aria-hidden="true" />
+              {lang === 'en' ? '中文' : 'English'}
+            </button>
           </div>
         </div>
       </div>

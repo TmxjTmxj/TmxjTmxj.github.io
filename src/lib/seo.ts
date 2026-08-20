@@ -1,6 +1,7 @@
 /**
  * Per-page SEO. Static defaults live in index.html; this hook overrides
- * title / description / canonical / OG / Twitter tags on route change.
+ * title / description / canonical / OG / Twitter / author tags on route
+ * and language change.
  */
 import { useEffect } from 'react';
 import { siteConfig } from '../data/site';
@@ -11,6 +12,7 @@ export interface PageMeta {
   /** Route path WITHOUT base prefix, e.g. "/projects/slug". */
   path: string;
   image?: string;
+  author?: string;
 }
 
 function setMeta(selector: string, attr: string, value: string) {
@@ -23,13 +25,14 @@ function absoluteUrl(path: string): string {
   return `${siteConfig.url.replace(/\/$/, '')}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-export function usePageMeta({ title, description, path, image }: PageMeta) {
+export function usePageMeta({ title, description, path, image, author }: PageMeta) {
   useEffect(() => {
     const url = absoluteUrl(path);
 
     document.title = title;
     setMeta('meta[name="description"]', 'content', description);
     setMeta('link[rel="canonical"]', 'href', url);
+    if (author) setMeta('meta[name="author"]', 'content', author);
 
     setMeta('meta[property="og:title"]', 'content', title);
     setMeta('meta[property="og:description"]', 'content', description);
@@ -42,5 +45,5 @@ export function usePageMeta({ title, description, path, image }: PageMeta) {
       setMeta('meta[property="og:image"]', 'content', imageUrl);
       setMeta('meta[name="twitter:image"]', 'content', imageUrl);
     }
-  }, [title, description, path, image]);
+  }, [title, description, path, image, author]);
 }

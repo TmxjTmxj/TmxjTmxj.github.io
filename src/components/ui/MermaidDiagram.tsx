@@ -4,12 +4,13 @@
  * the source falls back to a readable <pre> block.
  */
 import { useEffect, useRef, useState } from 'react';
-import { copy } from '../../data/site';
+import { useI18n } from '../../i18n/context';
 
 export function MermaidDiagram({ code, caption }: { code: string; caption?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const [svg, setSvg] = useState('');
+  const { t } = useI18n();
 
   useEffect(() => {
     let cancelled = false;
@@ -61,7 +62,7 @@ export function MermaidDiagram({ code, caption }: { code: string; caption?: stri
       </div>
       {state === 'ready' && (
         <figcaption className="border-t border-line px-4 py-2 text-center font-mono text-xs text-ink-muted">
-          {caption ?? copy.detail.architectureCaption}
+          {caption ?? t.detail.architectureCaption}
         </figcaption>
       )}
     </figure>

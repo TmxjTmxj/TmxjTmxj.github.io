@@ -1,7 +1,8 @@
 /** About - recruiter-friendly: no long biography, scannable sections. */
 import { Compass, FileText, Target } from 'lucide-react';
-import { copy, siteConfig } from '../data/site';
-import { profile } from '../data/profile';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useProfile } from '../i18n/use-content';
 import { usePageMeta } from '../lib/seo';
 import { asset } from '../lib/utils';
 import { Badge } from '../components/ui/Badge';
@@ -9,11 +10,15 @@ import { Button } from '../components/ui/Button';
 import { Reveal } from '../components/ui/Reveal';
 
 export function AboutPage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   usePageMeta({
-    title: `About · ${siteConfig.author}`,
+    title: t.seo.aboutTitle(profile.name),
     description: profile.description,
     path: '/about',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   return (
@@ -22,7 +27,7 @@ export function AboutPage() {
         <Reveal>
           <img
             src={asset(profile.avatar)}
-            alt={`Portrait placeholder for ${profile.name} - replace with a real photo`}
+            alt={t.about.avatarAlt(profile.name)}
             loading="lazy"
             width={320}
             height={320}
@@ -30,9 +35,9 @@ export function AboutPage() {
           />
         </Reveal>
         <Reveal delayMs={80}>
-          <p className="section-label mb-2">about</p>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.about.title}</h1>
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">{copy.about.intro}</p>
+          <p className="section-label mb-2">{t.section.about}</p>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.about.title}</h1>
+          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft">{t.about.intro}</p>
           <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-soft">{profile.description}</p>
         </Reveal>
       </header>
@@ -43,7 +48,7 @@ export function AboutPage() {
             <span className="rounded-md bg-accent-soft p-2.5 text-accent">
               <Compass className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-4 text-lg font-bold tracking-tight">{copy.about.interestsTitle}</h2>
+            <h2 className="mt-4 text-lg font-bold tracking-tight">{t.about.interestsTitle}</h2>
             <ul className="mt-4 flex flex-wrap gap-1.5">
               {profile.interests.map((interest) => (
                 <li key={interest}>
@@ -59,7 +64,7 @@ export function AboutPage() {
             <span className="rounded-md bg-accent-soft p-2.5 text-accent">
               <Target className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-4 text-lg font-bold tracking-tight">{copy.about.workingTitle}</h2>
+            <h2 className="mt-4 text-lg font-bold tracking-tight">{t.about.workingTitle}</h2>
             <ul className="mt-4 space-y-2.5">
               {profile.workingOn.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-soft">
@@ -76,7 +81,7 @@ export function AboutPage() {
             <span className="rounded-md bg-accent-soft p-2.5 text-accent">
               <FileText className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-4 text-lg font-bold tracking-tight">{copy.about.lookingTitle}</h2>
+            <h2 className="mt-4 text-lg font-bold tracking-tight">{t.about.lookingTitle}</h2>
             <ul className="mt-4 flex flex-wrap gap-1.5">
               {profile.lookingFor.map((role) => (
                 <li key={role}>
@@ -85,7 +90,7 @@ export function AboutPage() {
               ))}
             </ul>
             <Button to="/resume" variant="secondary" size="sm" className="mt-5">
-              {copy.about.resumeCta}
+              {t.about.resumeCta}
             </Button>
           </div>
         </Reveal>

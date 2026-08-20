@@ -1,6 +1,6 @@
-/** Project search input - debounced, with clear button. */
+/** Project search input - with clear button. */
 import { Search, X } from 'lucide-react';
-import { copy } from '../../data/site';
+import { useI18n } from '../../i18n/context';
 
 export function ProjectSearch({
   value,
@@ -9,6 +9,7 @@ export function ProjectSearch({
   value: string;
   onChange: (v: string) => void;
 }) {
+  const { t } = useI18n();
   return (
     <div className="relative w-full sm:max-w-xs">
       <Search
@@ -19,8 +20,8 @@ export function ProjectSearch({
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder={copy.projects.searchPlaceholder}
-        aria-label={copy.projects.searchLabel}
+        placeholder={t.projects.searchPlaceholder}
+        aria-label={t.projects.searchLabel}
         className="w-full rounded-[var(--radius-btn)] border border-line bg-surface py-2 pl-9 pr-9 text-sm text-ink placeholder:text-ink-muted focus:border-accent"
       />
       {value && (

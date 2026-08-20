@@ -1,51 +1,56 @@
 /** Contact - direct mailto CTA + professional contact cards. No backend form. */
 import { FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react';
-import { copy, siteConfig } from '../data/site';
-import { profile } from '../data/profile';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useProfile } from '../i18n/use-content';
 import { asset } from '../lib/utils';
 import { usePageMeta } from '../lib/seo';
 import { Reveal } from '../components/ui/Reveal';
 
 export function ContactPage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+
   usePageMeta({
-    title: `Contact · ${siteConfig.author}`,
+    title: t.seo.contactTitle(profile.name),
     description: `Contact ${profile.name}: email, GitHub, LinkedIn and location.`,
     path: '/contact',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   const cards = [
     {
       icon: Mail,
-      label: copy.contact.email,
+      label: t.contact.email,
       value: profile.email,
       href: `mailto:${profile.email}`,
-      aria: copy.contact.openEmail,
+      aria: t.contact.openEmail,
     },
     {
       icon: Github,
-      label: copy.contact.github,
+      label: t.contact.github,
       value: profile.github.replace(/^https?:\/\//, ''),
       href: profile.github,
-      aria: copy.contact.openGithub,
+      aria: t.contact.openGithub,
     },
     {
       icon: Linkedin,
-      label: copy.contact.linkedin,
+      label: t.contact.linkedin,
       value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, ''),
       href: profile.linkedin,
-      aria: copy.contact.openLinkedin,
+      aria: t.contact.openLinkedin,
     },
     {
       icon: MapPin,
-      label: copy.contact.location,
+      label: t.contact.location,
       value: profile.location,
       href: undefined,
       aria: undefined,
     },
     {
       icon: FileText,
-      label: copy.contact.resume,
+      label: t.contact.resume,
       value: 'resume.pdf',
       href: asset(profile.resumeUrl),
       aria: 'Open resume PDF',
@@ -56,9 +61,9 @@ export function ContactPage() {
     <div className="container-page pb-20 pt-28 sm:pt-32">
       <Reveal>
         <header className="mx-auto max-w-2xl text-center">
-          <p className="section-label mb-2 justify-center">contact</p>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.contact.subtitle}</h1>
-          <p className="mt-3 text-lg font-medium text-accent">{copy.contact.cta}</p>
+          <p className="section-label mb-2 justify-center">{t.section.contact}</p>
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.contact.subtitle}</h1>
+          <p className="mt-3 text-lg font-medium text-accent">{t.contact.cta}</p>
         </header>
       </Reveal>
 
@@ -103,7 +108,7 @@ export function ContactPage() {
 
       <Reveal delayMs={200}>
         <p className="mt-10 text-center font-mono text-xs text-ink-muted">
-          {copy.contact.responseNote}
+          {t.contact.responseNote}
         </p>
       </Reveal>
     </div>

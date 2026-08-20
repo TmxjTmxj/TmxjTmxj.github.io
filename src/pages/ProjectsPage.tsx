@@ -1,26 +1,32 @@
 /**
  * Projects page: search + category filter over the full project set.
  * Category state is synced to the URL (?category=robotics) so filtered
- * views are shareable and back/forward works.
+ * views are shareable and back/forward works. Content is localized.
  */
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { copy, siteConfig, categoryLabels } from '../data/site';
-import { projects } from '../data/projects';
+import { FolderOpen } from 'lucide-react';
+import { siteConfig } from '../data/site';
+import { useI18n } from '../i18n/context';
+import { useProjects, useProfile } from '../i18n/use-content';
 import { usePageMeta } from '../lib/seo';
 import { ProjectCard } from '../components/projects/ProjectCard';
 import { ProjectSearch } from '../components/projects/ProjectSearch';
 import { ProjectFilters, type CategoryFilterValue } from '../components/projects/ProjectFilters';
 import { Reveal } from '../components/ui/Reveal';
 import { Button } from '../components/ui/Button';
-import { FolderOpen } from 'lucide-react';
 
 export function ProjectsPage() {
+  const { t } = useI18n();
+  const profile = useProfile();
+  const projects = useProjects();
+
   usePageMeta({
-    title: `Projects · ${siteConfig.author}`,
-    description: 'Selected engineering projects: AI agents, robotics, engineering software and intelligent systems.',
+    title: t.seo.projectsTitle(profile.name),
+    description: t.seo.projectsDescription,
     path: '/projects',
     image: siteConfig.ogImage,
+    author: profile.name,
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -52,34 +58,34 @@ export function ProjectsPage() {
         p.description,
         p.tags.join(' '),
         p.technologies.join(' '),
-        p.categories.map((c) => categoryLabels[c]).join(' '),
+        p.categories.map((c) => t.categories[c]).join(' '),
       ]
         .join(' ')
         .toLowerCase();
       return haystack.includes(q);
     });
-  }, [query, category]);
+  }, [projects, query, category, t]);
 
   const counts = useMemo(() => {
     const result: Record<string, number> = { all: projects.length };
-    for (const c of Object.keys(categoryLabels)) {
+    for (const c of Object.keys(t.categories)) {
       result[c] = projects.filter((p) => p.categories.includes(c as never)).length;
     }
     return result;
-  }, []);
+  }, [projects, t]);
 
   return (
     <div className="container-page pb-20 pt-28 sm:pt-32">
       <header className="max-w-2xl">
-        <p className="section-label mb-2">projects</p>
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.projects.title}</h1>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{copy.projects.subtitle}</p>
+        <p className="section-label mb-2">{t.section.projects}</p>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t.projects.title}</h1>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-muted">{t.projects.subtitle}</p>
       </header>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <ProjectSearch value={query} onChange={setQuery} />
         <p className="font-mono text-sm text-ink-muted" role="status" aria-live="polite">
-          {filtered.length} {copy.projects.results}
+          {filtered.length} {t.projects.results}
         </p>
       </div>
 
@@ -96,8 +102,8 @@ export function ProjectsPage() {
       ) : (
         <div className="card mt-10 p-12 text-center">
           <FolderOpen className="mx-auto h-10 w-10 text-ink-muted" aria-hidden="true" />
-          <h2 className="mt-4 text-lg font-semibold">{copy.projects.emptyTitle}</h2>
-          <p className="mt-1 text-sm text-ink-muted">{copy.projects.emptyText}</p>
+          <h2 className="mt-4 text-lg font-semibold">{t.projects.emptyTitle}</h2>
+          <p className="mt-1 text-sm text-ink-muted">{t.projects.emptyText}</p>
           <Button
             className="mt-6"
             onClick={() => {
@@ -105,7 +111,7 @@ export function ProjectsPage() {
               setCategory('all');
             }}
           >
-            {copy.projects.reset}
+            {t.projects.reset}
           </Button>
         </div>
       )}
