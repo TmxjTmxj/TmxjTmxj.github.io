@@ -1,36 +1,37 @@
 /**
- * Personal profile - edit this file to make the site yours.
+ * Personal profile - real data from GitHub (TmxjTmxj / 天漠雪佳).
  * ------------------------------------------------------------
- * Every field below is a placeholder. Replace each one and then
- * delete the matching entry from CONTENT_TODO.md.
+ * Anything still marked [TODO] needs your input - see CONTENT_TODO.md.
  */
 
 export const profile = {
-  // [YOUR_NAME] - used in the hero, navbar, footer, SEO and OG image.
-  name: '[YOUR_NAME]',
-  firstName: '[YOUR_NAME]',
+  // Display name (native Chinese; the site is English-first).
+  name: '天漠雪佳',
+  firstName: '天漠雪佳',
+
+  // GitHub handle - used for the navbar brand, terminal and links.
+  handle: 'tmxjtmxj',
 
   // Professional title shown in the hero and SEO.
-  title: 'AI Agent / Robotics / Software Engineer',
+  title: 'AI Agent Engineer · Intelligent Manufacturing',
 
-  // One-sentence pitch. Keep it under ~140 characters.
+  // One-sentence pitch (from your GitHub profile README philosophy).
   tagline:
-    'I build intelligent systems that connect AI agents, software and physical machines.',
+    'I don’t hand-write traditional code — I build and command AI agents that land intelligent manufacturing.',
 
   // Longer description (About page + meta description).
   description:
-    'Engineer focused on the intersection of AI agents, robotics and engineering software - from multi-agent orchestration and LLM tool-calling to ROS2 control and autonomous navigation.',
+    'Independent developer and AI Agent Builder. I build agent systems across multi-agent orchestration, layered-memory agent cores, ROS2 + MCP robot control and intelligent manufacturing — CAD/CAE automation, CNC/CAM simulation, ML-driven spring-force prediction and wind-farm O&M. Mechanical engineering student at Shandong University.',
 
   // Contact & socials
-  email: '[YOUR_EMAIL]@example.com',
-  github: 'https://github.com/your-github-username',
-  linkedin: 'https://www.linkedin.com/in/your-linkedin',
-  location: '[YOUR_LOCATION]',
+  email: 'yztmxj@163.com',
+  github: 'https://github.com/TmxjTmxj',
+  linkedin: 'https://www.linkedin.com/in/[YOUR_LINKEDIN]',
+  location: 'Shandong University · China',
 
-  // GitHub username (no URL). Used by the GitHub statistics section
-  // and to enrich project cards with stars/forks/language.
-  // Leave '' to hide all live GitHub data until you connect your account.
-  githubUsername: '',
+  // GitHub username (no URL). Powers the live GitHub statistics section
+  // and star/fork/language badges on project cards.
+  githubUsername: 'TmxjTmxj',
 
   // Resume PDF - replace the file at public/resume/resume.pdf
   resumeUrl: '/resume/resume.pdf',
@@ -38,29 +39,29 @@ export const profile = {
 
   avatar: '/avatar/avatar.svg',
 
-  // Availability line under the hero.
-  availability: 'Open to internships & full-time roles',
+  // Availability line under the hero (hireable: true on GitHub).
+  availability: 'Open to opportunities',
 
-  // Quick stats under the hero. These are plain config - edit freely.
+  // Quick stats under the hero. Plain config - edit freely.
   stats: [
-    { value: '6+', label: 'Projects' },
-    { value: '[XX]+', label: 'GitHub Repositories' },
-    { value: '20+', label: 'Technologies' },
-    { value: '[X]+', label: 'Years of Engineering' },
+    { value: '8', label: 'Projects' },
+    { value: '16', label: 'GitHub Repositories' },
+    { value: '7+', label: 'AI Agents Built' },
+    { value: '15+', label: 'Technologies' },
   ],
 
-  // About page - What I'm looking for (recruiter keyword targets).
+  // About page.
   interests: [
     'AI Agents',
-    'Robotics',
     'Intelligent Manufacturing',
-    'Engineering Automation',
-    'Human-AI Collaboration',
+    'Embodied Intelligence',
+    'ROS2 Robotics',
+    'Open Source',
   ],
   workingOn: [
-    'Multi-agent orchestration with LLM tool-calling',
-    'ROS2-based autonomous robot control',
-    'Open-source developer tooling',
+    'Agent-controlled ROS2 robots — MCP + Gazebo simulation',
+    'Agent cores: layered memory & consciousness engines (Hermes / Lobster)',
+    'Bringing agents into the workshop — CAD/CAE/CAM automation',
   ],
   lookingFor: [
     'AI Engineer',

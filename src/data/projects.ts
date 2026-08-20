@@ -1,327 +1,299 @@
 /**
- * Projects - the heart of the portfolio.
+ * Projects - real GitHub repositories (TmxjTmxj).
  * ------------------------------------------------------------
+ * Titles, descriptions, links, technologies, categories and highlights
+ * come from your actual repositories. Narrative fields (background /
+ * problem / solution / challenges / results) that are still marked
+ * [TODO] need your own words - fill them in and remove `isPlaceholder`.
+ * Full checklist: CONTENT_TODO.md
+ *
  * Add a new project = add one object here + drop images into
  * public/projects/<slug>/. Nothing else to change.
- *
- * Every current entry is a PLACEHOLDER demonstrating the required
- * Problem -> Solution -> Engineering -> Result depth. Replace each
- * field with your real project and remove `isPlaceholder: true`.
- * (Full checklist: CONTENT_TODO.md)
  */
 
 import type { Project } from '../types';
 
+const GH = 'https://github.com/TmxjTmxj';
+
 export const projects: Project[] = [
   {
-    title: 'AI-Agent Robot Control System',
-    slug: 'ai-agent-robot-control',
+    title: 'ROS2 Agent Workflow',
+    slug: 'ros2-agent-workflow',
     description:
-      'An AI-agent-driven ROS2 control stack that converts natural-language tasks into executable robotic workflows - integrating perception, planning and real-time control.',
+      'Control a ROS2 robot (lyrical) and Gazebo simulation through the MCP protocol — an MCP server, one-click demo scripts and skill docs that let AI agents drive robots end-to-end.',
     longDescription:
-      'A complete agent-to-actuator pipeline: an LLM agent decomposes a natural-language task into structured goals, a planner maps them to ROS2 actions, and a runtime supervisor executes, monitors and recovers from failures in real time.',
-    image: '/projects/ai-agent-robot-control/cover.svg',
-    imageAlt: 'Architecture diagram of the AI-agent robot control system',
+      'An agent-to-robot bridge: an MCP server exposes ROS2 control capabilities to LLM agents, so a simulated robot can be driven end-to-end by an AI agent. Ships one-click demo scripts and skill documentation that make the whole agent→robot workflow reproducible.',
+    image: '/projects/ros2-agent-workflow/cover.svg',
+    imageAlt: 'MCP agent controlling a ROS2 robot in Gazebo simulation',
     categories: ['ai-agents', 'robotics'],
-    tags: ['AI Agent', 'ROS2', 'Computer Vision', 'LLM', 'Python'],
-    technologies: ['Python', 'ROS2', 'FastAPI', 'LLM', 'OpenCV', 'Docker'],
-    github: 'https://github.com/your-github-username/your-repo',
-    githubRepo: '',
-    demo: '',
-    docs: '',
+    tags: ['MCP', 'ROS2', 'Gazebo', 'AI Agent'],
+    technologies: ['Python', 'ROS2', 'Gazebo', 'MCP', 'FastMCP'],
+    github: `${GH}/ros2-agent-workflow`,
+    githubRepo: 'TmxjTmxj/ros2-agent-workflow',
     featured: true,
-    year: '2025',
-    role: 'Sole developer - agent design, ROS2 integration, perception pipeline, evaluation',
+    year: '2026',
+    role: 'Sole developer — MCP server, one-click demo scripts and skill documentation',
     background:
-      '[Replace with your real background] Robotic deployments usually require hand-written launch files and mission scripts that break when the task changes. The goal was a system where an operator simply describes the task in plain language.',
+      '[TODO: your background — why you built an agent-driven ROS2 workflow, e.g. the gap between natural-language tasking and ROS2 operation]',
     problem:
-      '[Replace with your real problem] Translating unstructured natural-language instructions into safe, verifiable robot actions - while keeping latency low enough for real-time control.',
+      '[TODO: the concrete problem — e.g. operating ROS2 robots requires hand-written launch files and per-task scripts]',
     solution:
-      '[Replace with your real solution] A three-layer architecture: (1) an LLM agent with tool-calling converts instructions into a validated task graph, (2) a planner compiles the graph into ROS2 action sequences, (3) a supervisor node monitors execution and replans on failure.',
+      '[TODO: how it solves the problem — e.g. an MCP server exposes ROS2 tools to LLM agents, with Gazebo simulation as the safe test environment]',
     highlights: [
-      'Natural language → ROS2 action graph with schema-validated tool calling',
-      'Runtime supervisor detects failures and replans autonomously',
-      'Perception module fuses camera + LiDAR for obstacle detection',
-      'End-to-end latency under 200 ms from command to actuation',
+      'MCP server bridging LLM agents to ROS2 (lyrical)',
+      'One-click demo scripts for the full agent → robot workflow',
+      'Skill documentation for reproducible runs',
+      'Gazebo simulation for safe, repeatable testing',
     ],
     architecture: {
       type: 'image',
-      src: '/projects/ai-agent-robot-control/architecture.svg',
-      alt: 'Three-layer architecture: LLM agent, planner, ROS2 runtime',
-      caption: 'Agent → Planner → ROS2 runtime → Robot',
+      src: '/projects/ros2-agent-workflow/architecture.svg',
+      alt: 'LLM agent → MCP server → ROS2 nodes → Gazebo robot',
+      caption: 'Agent → MCP Server → ROS2 → Gazebo',
     },
-    challenges: [
-      {
-        challenge: '[CHALLENGE_01] Hallucinated or invalid robot commands',
-        analysis:
-          'LLM output is non-deterministic; free-form tool calls produced action parameters that violated the robot’s kinematic and safety limits.',
-        solution:
-          'Tool schemas encode ROS2 message constraints, and a validation layer rejects out-of-range commands before they reach the planner.',
-        result: 'Invalid-command rate dropped from ~12% to 0% in the test suite.',
-      },
-      {
-        challenge: '[CHALLENGE_02] Real-time constraint vs. LLM latency',
-        analysis:
-          'A full LLM round-trip (1-3 s) is too slow for reactive control loops.',
-        solution:
-          'Decoupled planning from execution: the agent plans asynchronously while a deterministic supervisor runs the control loop at 50 Hz.',
-        result: 'Control loop stays deterministic under variable LLM latency.',
-      },
-    ],
     gallery: [
-      { src: '/projects/ai-agent-robot-control/screenshot-01.svg', alt: 'Task dashboard with agent conversation and robot state', caption: 'Operator dashboard' },
-      { src: '/projects/ai-agent-robot-control/screenshot-02.svg', alt: 'Terminal output of the ROS2 runtime supervisor', caption: 'Runtime supervisor logs' },
-    ],
-    results: [
-      '[RESULT_01] Replace with measurable outcome (e.g. task success rate, latency, accuracy)',
-      '[RESULT_02] e.g. 10x faster task specification vs. hand-written missions',
-      '[RESULT_03] e.g. deployed on real hardware / simulation benchmark',
-    ],
-    status: 'wip',
-    isPlaceholder: true,
-  },
-  {
-    title: 'Multi-Agent Task Orchestration Framework',
-    slug: 'multi-agent-orchestration',
-    description:
-      'An open-source framework for coordinating teams of LLM agents with shared memory, structured messaging and reproducible evaluation.',
-    longDescription:
-      'A lightweight orchestration layer that turns single-purpose LLM agents into a coordinated team: typed message passing between agents, shared scratchpad memory, human-in-the-loop checkpoints and a built-in evaluation harness.',
-    image: '/projects/multi-agent-orchestration/cover.svg',
-    imageAlt: 'Node graph of cooperating agents',
-    categories: ['ai-agents', 'software', 'open-source'],
-    tags: ['Multi-Agent', 'LLM', 'Open Source', 'TypeScript'],
-    technologies: ['TypeScript', 'Node.js', 'LLM APIs', 'Vitest', 'Docker'],
-    github: 'https://github.com/your-github-username/your-repo',
-    githubRepo: '',
-    demo: '',
-    docs: '',
-    featured: true,
-    year: '2025',
-    role: 'Creator & maintainer - core runtime, message protocol, evaluation suite',
-    background:
-      '[Replace with your real background] Existing agent frameworks either over-abstract or lock you into one vendor. This project explores the minimum set of primitives needed to build reliable multi-agent systems.',
-    problem:
-      '[Replace with your real problem] Multi-agent runs are notoriously non-deterministic: conversations drift, context grows unbounded, and there is no standard way to measure whether a "better" prompt actually helps.',
-    solution:
-      '[Replace with your real solution] A small typed runtime: agents communicate via a schema-validated message bus, memory is explicit and tiered (working / episodic / semantic), and every run is replayable against a versioned eval suite.',
-    highlights: [
-      'Schema-validated inter-agent messaging',
-      'Tiered shared memory with automatic summarization',
-      'Human-in-the-loop approval checkpoints',
-      'Reproducible eval harness with regression tracking',
-    ],
-    architecture: {
-      type: 'mermaid',
-      code: `flowchart LR
-  U[User Task] --> O[Orchestrator]
-  O --> A1[Planner Agent]
-  O --> A2[Worker Agent 1]
-  O --> A3[Worker Agent 2]
-  A1 --> M[(Shared Memory)]
-  A2 --> M
-  A3 --> M
-  O --> H{Human Checkpoint}
-  H -->|approve| R[Result]
-  H -->|revise| O`,
-      caption: 'Orchestrator → typed message bus → tiered shared memory',
-    },
-    challenges: [
-      {
-        challenge: '[CHALLENGE_01] Context drift in long multi-agent runs',
-        analysis:
-          'Conversation transcripts grow linearly and agent performance degrades as context approaches the model window.',
-        solution:
-          'Tiered memory: working memory holds the current task, episodic memory stores summaries, semantic memory is a searchable index. Summarization is triggered by token budget, not message count.',
-        result: 'Sustained performance over 50+ step tasks where the baseline drifted.',
-      },
-    ],
-    gallery: [
-      { src: '/projects/multi-agent-orchestration/screenshot-01.svg', alt: 'Agent run trace with typed messages', caption: 'Run trace viewer' },
-      { src: '/projects/multi-agent-orchestration/screenshot-02.svg', alt: 'Evaluation dashboard comparing prompt versions', caption: 'Eval dashboard' },
-    ],
-    results: [
-      '[RESULT_01] Replace with real metrics (stars, downloads, adoption)',
-      '[RESULT_02] e.g. eval suite catches regressions across prompt changes',
+      { src: '/projects/ros2-agent-workflow/screenshot-01.svg', alt: 'Agent run dashboard with ROS2 node state', caption: 'Replace with a real screenshot' },
+      { src: '/projects/ros2-agent-workflow/screenshot-02.svg', alt: 'Terminal output of the MCP + ROS2 demo script', caption: 'Replace with a real screenshot' },
     ],
     status: 'active',
     isPlaceholder: true,
   },
   {
-    title: 'SLAM-Based Autonomous Navigation Stack',
-    slug: 'slam-navigation-stack',
+    title: 'Agent Orchestrator',
+    slug: 'agent-orchestrator',
     description:
-      'A ROS2 navigation stack combining visual-inertial SLAM with model-predictive control for indoor autonomous robots.',
+      'A lightweight multi-agent orchestration framework — plan → delegate → execute → collect, with 6 agent roles, 11 role definitions, 5 skills, parallel execution and failure isolation.',
     longDescription:
-      'An end-to-end autonomous navigation system: visual-inertial SLAM builds and maintains a map, a global planner produces collision-free paths, and a local MPC controller tracks them at speed while avoiding dynamic obstacles.',
-    image: '/projects/slam-navigation-stack/cover.svg',
-    imageAlt: 'Robot trajectory over a SLAM map',
-    categories: ['robotics', 'engineering'],
-    tags: ['SLAM', 'Navigation', 'ROS2', 'C++'],
-    technologies: ['C++', 'ROS2', 'GTSAM', 'OpenCV', 'Gazebo', 'CMake'],
-    github: 'https://github.com/your-github-username/your-repo',
-    githubRepo: '',
-    demo: '',
-    docs: '',
+      'A small runtime that turns LLM agents into a coordinated team: a plan → delegate → execute → collect pipeline with six built-in agent roles, eleven role definitions and five skills. Work runs in parallel and failures are isolated per worker.',
+    image: '/projects/agent-orchestrator/cover.svg',
+    imageAlt: 'Orchestrator coordinating multiple agent roles',
+    categories: ['ai-agents', 'software', 'open-source'],
+    tags: ['Multi-Agent', 'Orchestration', 'LLM', 'Python'],
+    technologies: ['Python', 'LLM', 'Multi-Agent'],
+    github: `${GH}/agent-orchestrator`,
+    githubRepo: 'TmxjTmxj/agent-orchestrator',
     featured: true,
-    year: '2024',
-    role: 'Core developer - localization module, planner integration, simulation benchmarks',
+    year: '2026',
+    role: 'Creator — orchestration pipeline, agent roles, failure isolation',
     background:
-      '[Replace with your real background] Indoor robots operating in changing environments need maps that stay accurate and paths that stay safe - this project was the navigation backbone for a mobile-robot platform.',
+      '[TODO: your background — why the existing agent frameworks did not fit your needs]',
     problem:
-      '[Replace with your real problem] Localization drift in low-texture indoor scenes plus planner latency that caused near-miss collisions with moving people.',
+      '[TODO: the concrete problem — e.g. coordinating multiple LLM agents reliably without a heavy framework]',
     solution:
-      '[Replace with your real solution] Tightly-coupled visual-inertial SLAM with loop closure, a global planner that repairs paths online, and an MPC local controller running at 100 Hz with dynamic-obstacle prediction.',
+      '[TODO: how it solves it — e.g. a lightweight plan→delegate→execute→collect pipeline with typed roles and failure isolation]',
     highlights: [
-      'Visual-inertial SLAM with loop closure and relocalization',
-      'MPC local controller at 100 Hz with obstacle prediction',
-      'Simulation-to-hardware transfer validated in Gazebo and on robot',
-      'Sub-5 cm localization accuracy in cluttered indoor scenes',
+      'plan → delegate → execute → collect pipeline',
+      '6 agent roles + 11 role definitions + 5 skills',
+      'Parallel execution with failure isolation',
+    ],
+    architecture: {
+      type: 'mermaid',
+      code: `flowchart LR
+  T[Task] --> P[Planner]
+  P --> D{Delegate}
+  D --> W1[Worker 1]
+  D --> W2[Worker 2]
+  D --> W3[Worker 3]
+  W1 --> C[Collector]
+  W2 --> C
+  W3 --> C
+  C --> R[Result]
+  W1 -.failure isolated.-> C`,
+      caption: 'plan → delegate → execute → collect (from the repo description)',
+    },
+    gallery: [
+      { src: '/projects/agent-orchestrator/screenshot-01.svg', alt: 'Agent run trace with role messages', caption: 'Replace with a real screenshot' },
+      { src: '/projects/agent-orchestrator/screenshot-02.svg', alt: 'Run statistics dashboard', caption: 'Replace with a real screenshot' },
+    ],
+    status: 'active',
+    isPlaceholder: true,
+  },
+  {
+    title: 'Beifeng Wind Agent',
+    slug: 'beifeng-wind-agent',
+    description:
+      'A Rust-powered AI agent for wind-farm operations & maintenance: RAG knowledge hub, fault diagnosis, risk assessment, report generation, a benchmark harness and a Tauri desktop app.',
+    longDescription:
+      'An industrial AI agent for wind-farm O&M written in Rust: a RAG knowledge hub over farm documentation, fault-diagnosis and risk-assessment pipelines, automated report generation, a benchmark harness to evaluate the agent itself, and a Tauri desktop application.',
+    image: '/projects/beifeng-wind-agent/cover.svg',
+    imageAlt: 'Wind farm O&M agent pipeline',
+    categories: ['ai-agents', 'engineering', 'research'],
+    tags: ['RAG', 'Rust', 'Wind Energy', 'O&M', 'Tauri'],
+    technologies: ['Rust', 'Tauri', 'RAG', 'LLM'],
+    github: `${GH}/beifeng-wind-agent`,
+    githubRepo: 'TmxjTmxj/beifeng-wind-agent',
+    featured: true,
+    year: '2026',
+    role: 'Sole developer — RAG hub, diagnosis & risk pipelines, report generation, benchmark harness, Tauri app',
+    background:
+      '[TODO: your background — why wind-farm O&M needs an agent, e.g. domain knowledge is scattered and diagnosis is expert-dependent]',
+    problem:
+      '[TODO: the concrete problem — e.g. fault diagnosis and risk assessment require domain experts and take hours per case]',
+    solution:
+      '[TODO: how it solves it — e.g. a RAG knowledge hub plus diagnosis/risk/report pipelines, with a benchmark harness to measure agent quality]',
+    highlights: [
+      'RAG knowledge hub over wind-farm documentation',
+      'Fault diagnosis + risk assessment pipelines',
+      'Automated report generation',
+      'Benchmark harness for agent evaluation',
+      'Tauri desktop app',
     ],
     architecture: {
       type: 'image',
-      src: '/projects/slam-navigation-stack/architecture.svg',
-      alt: 'Sensors → SLAM → global planner → MPC controller → actuators',
-      caption: 'Sense → Map → Plan → Control',
+      src: '/projects/beifeng-wind-agent/architecture.svg',
+      alt: 'Documents → RAG index → diagnosis/risk → report',
+      caption: 'Docs → RAG → Diagnosis / Risk → Report',
     },
-    challenges: [
-      {
-        challenge: '[CHALLENGE_01] Localization drift in feature-poor corridors',
-        analysis:
-          'Long, textureless corridors caused the visual frontend to lose tracking.',
-        solution:
-          'Fused IMU preintegration with visual residuals and added periodic loop-closure checks against a pose graph.',
-        result: 'Drift reduced below 0.5% of distance traveled in test runs.',
-      },
-    ],
     gallery: [
-      { src: '/projects/slam-navigation-stack/screenshot-01.svg', alt: 'RViz view of map, robot and planned path', caption: 'RViz navigation view' },
-      { src: '/projects/slam-navigation-stack/screenshot-02.svg', alt: 'Gazebo simulation environment', caption: 'Gazebo simulation' },
+      { src: '/projects/beifeng-wind-agent/screenshot-01.svg', alt: 'Wind farm O&M agent dashboard', caption: 'Replace with a real screenshot' },
+      { src: '/projects/beifeng-wind-agent/screenshot-02.svg', alt: 'Fault diagnosis terminal output', caption: 'Replace with a real screenshot' },
     ],
-    results: [
-      '[RESULT_01] Replace with real numbers (localization error, success rate)',
-      '[RESULT_02] e.g. 95%+ navigation success rate across N runs',
-    ],
-    status: 'maintained',
+    status: 'active',
     isPlaceholder: true,
   },
   {
-    title: 'Engineering Data Pipeline & Digital Twin',
-    slug: 'engineering-data-pipeline',
+    title: 'Hermes Agent Core',
+    slug: 'hermes-core',
     description:
-      'A data pipeline that turns CAD, CAE and sensor exports into a live digital twin for manufacturing process monitoring.',
+      'An agent core with a consciousness engine, four-layer memory, a tavern-style personality interface and a cross-agent memory bridge.',
     longDescription:
-      'Ingests heterogeneous engineering data (CAD assemblies, CAE result files, machine telemetry), normalizes it into a common schema, and streams it into a web-based digital twin of the production cell.',
-    image: '/projects/engineering-data-pipeline/cover.svg',
-    imageAlt: 'Pipeline from CAD/CAE files to a live dashboard',
-    categories: ['engineering', 'software'],
-    tags: ['Digital Twin', 'Data Pipeline', 'CAD', 'CAE'],
-    technologies: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'Docker', 'TimescaleDB'],
-    github: '',
-    githubRepo: '',
-    demo: '',
-    docs: '',
-    featured: false,
-    year: '2024',
-    role: 'Backend developer - ingestion, schema design, API, dashboard integration',
-    background:
-      '[Replace with your real background] Engineering data was scattered across file shares and formats; process decisions were made from stale exports.',
-    problem:
-      '[Replace with your real problem] Unifying CAD/CAE exports and machine telemetry into one queryable, up-to-date view without disrupting existing workflows.',
-    solution:
-      '[Replace with your real solution] A file-watcher ingestion service converts exports into a normalized schema, a FastAPI service exposes it, and a React dashboard visualizes the production cell state in near real time.',
-    highlights: [
-      'Format-agnostic ingestion for CAD / CAE / CSV / OPC-UA',
-      'Near-real-time telemetry via TimescaleDB continuous aggregates',
-      'Web dashboard with drill-down from cell to single part',
-    ],
-    challenges: [
-      {
-        challenge: '[CHALLENGE_01] Heterogeneous formats and inconsistent units',
-        analysis: 'Exports from different tools disagreed on units, coordinate frames and naming.',
-        solution: 'A normalization layer with per-source adapters and explicit unit/transform metadata.',
-        result: 'Single-source-of-truth schema adopted by downstream consumers.',
-      },
-    ],
-    gallery: [],
-    results: [
-      '[RESULT_01] Replace with real numbers (data latency, adoption)',
-      '[RESULT_02] e.g. report generation time reduced from hours to minutes',
-    ],
-    status: 'maintained',
-    isPlaceholder: true,
-  },
-  {
-    title: 'LLM RAG Knowledge Assistant',
-    slug: 'llm-rag-assistant',
-    description:
-      'A retrieval-augmented generation assistant over technical documentation with cited, auditable answers.',
-    longDescription:
-      'A RAG system for engineering documentation: hybrid retrieval (lexical + vector) over versioned docs, reranking, and answers that always cite their sources - so engineers can trust and verify every claim.',
-    image: '/projects/llm-rag-assistant/cover.svg',
-    imageAlt: 'Question in, cited answer out',
+      'The core runtime of the Hermes agent: a consciousness engine that drives reasoning loops, four-layer memory (from working context to long-term knowledge), a personality interface, and a memory bridge that lets multiple agents share what they know.',
+    image: '/projects/hermes-core/cover.svg',
+    imageAlt: 'Hermes agent core with layered memory',
     categories: ['ai-agents', 'research'],
-    tags: ['RAG', 'LLM', 'Embeddings', 'Search'],
-    technologies: ['Python', 'LangChain', 'pgvector', 'FastAPI', 'Streamlit'],
-    github: '',
-    githubRepo: '',
-    demo: '',
-    docs: '',
+    tags: ['Agent Core', 'Memory', 'LLM', 'Python'],
+    technologies: ['Python', 'LLM', 'Agent Memory'],
+    github: `${GH}/hermes-core`,
+    githubRepo: 'TmxjTmxj/hermes-core',
     featured: false,
-    year: '2024',
-    role: 'Researcher & developer - retrieval pipeline, evaluation, UI',
-    background:
-      '[Replace with your real background] Finding answers across thousands of versioned engineering documents was slow; naive LLM answers were unverifiable.',
-    problem:
-      '[Replace with your real problem] Retrieval quality - answers must be correct for versioned technical content and always traceable to a source.',
-    solution:
-      '[Replace with your real solution] Hybrid retrieval combining BM25 and dense embeddings, cross-encoder reranking, and a citation layer that links every answer span to the exact document version.',
+    year: '2026',
+    role: 'Creator — consciousness engine, four-layer memory, personality interface, memory bridge',
+    background: '[TODO: your background — why a custom agent core instead of an existing framework]',
+    problem: '[TODO: the concrete problem — e.g. stateless LLM agents forget context between sessions]',
+    solution: '[TODO: how it solves it — e.g. four-layer memory + a cross-agent memory bridge]',
     highlights: [
-      'Hybrid BM25 + vector retrieval with reranking',
-      'Version-aware indexing for changing docs',
-      'Every answer cites retrievable sources',
+      'Consciousness engine driving the reasoning loop',
+      'Four-layer memory architecture',
+      'Tavern-style personality interface',
+      'Cross-agent memory bridge',
     ],
-    gallery: [],
-    results: [
-      '[RESULT_01] Replace with real evaluation numbers (hit rate, answer accuracy)',
-      '[RESULT_02] e.g. answer citation accuracy near 100% on eval set',
-    ],
-    status: 'archived',
+    status: 'active',
     isPlaceholder: true,
   },
   {
-    title: 'CAD/CAE Automation Toolkit',
-    slug: 'cad-cae-automation',
+    title: 'TMXJ Agent',
+    slug: 'tmxj-agent',
     description:
-      'An open-source Python toolkit that automates parametric CAD generation and CAE simulation loops.',
+      'A DeepSeek-first terminal coding agent built in Rust. Fork of Claw Code.',
     longDescription:
-      'Scriptable parametric design: generate CAD variants from parameters, mesh them, run CAE simulations headlessly, and collect results - enabling design-space exploration without manual clicking.',
-    image: '/projects/cad-cae-automation/cover.svg',
-    imageAlt: 'Parametric part variants feeding a simulation loop',
-    categories: ['engineering', 'software', 'open-source'],
-    tags: ['CAD', 'CAE', 'Automation', 'Python'],
-    technologies: ['Python', 'CadQuery', 'OpenMDAO', 'NumPy', 'GitHub Actions'],
-    github: '',
-    githubRepo: '',
-    demo: '',
-    docs: '',
+      'A terminal coding agent optimized for DeepSeek models, written in Rust (fork of Claw Code). Lets an AI agent plan, edit, run and verify code directly in the terminal.',
+    image: '/projects/tmxj-agent/cover.svg',
+    imageAlt: 'TMXJ Agent terminal coding agent',
+    categories: ['ai-agents', 'software', 'open-source'],
+    tags: ['Rust', 'DeepSeek', 'CLI', 'Coding Agent'],
+    technologies: ['Rust', 'DeepSeek', 'CLI'],
+    github: `${GH}/tmxj-agent`,
+    githubRepo: 'TmxjTmxj/tmxj-agent',
     featured: false,
-    year: '2023',
-    role: 'Author - parameterization API, simulation driver, CI examples',
-    background:
-      '[Replace with your real background] Design iterations meant hours of manual CAD edits and simulation setup for every variant.',
-    problem:
-      '[Replace with your real problem] Turning design parameters into validated simulation results automatically and reproducibly.',
-    solution:
-      '[Replace with your real solution] A parameter-driven generator produces CAD via CadQuery, a driver runs headless CAE jobs in containers, and results are aggregated into comparison tables and plots.',
+    year: '2026',
+    role: 'Maintainer — DeepSeek-first configuration and tooling (fork of Claw Code)',
+    background: '[TODO: your background — why DeepSeek-first]',
+    problem: '[TODO: the concrete problem — e.g. terminal coding agents tuned for other providers underperform with DeepSeek models]',
+    solution: '[TODO: how it solves it — e.g. DeepSeek-first prompts and tool configuration in Rust]',
     highlights: [
-      'Parametric CAD generation from plain config files',
-      'Headless simulation loop, parallel across variants',
-      'Reproducible runs via Docker + GitHub Actions',
+      'DeepSeek-first terminal coding agent',
+      'Built in Rust',
+      'Plan → edit → run → verify loop in the terminal',
     ],
-    gallery: [],
+    status: 'maintained',
+    isPlaceholder: true,
+  },
+  {
+    title: 'CNC CAM & G-Code Simulator',
+    slug: 'cnc-cam-gcode-simulator',
+    description:
+      'Desktop software for CNC CAM and G-code simulation: DXF import, CAM toolpath generation, Fanuc G-code output and 2D/3D simulation for milling and turning modes.',
+    longDescription:
+      'A desktop application covering the CNC pipeline end-to-end: import DXF geometry, generate CAM toolpaths, emit Fanuc G-code and simulate the result in 2D/3D — supporting both milling and turning modes.',
+    image: '/projects/cnc-cam-gcode-simulator/cover.svg',
+    imageAlt: 'DXF import to G-code simulation pipeline',
+    categories: ['engineering', 'software'],
+    tags: ['CNC', 'CAM', 'G-Code', 'Simulation'],
+    technologies: ['Python', 'DXF', 'CAM', 'G-Code', '2D/3D Simulation'],
+    github: `${GH}/cnc-cam-gcode-simulator`,
+    githubRepo: 'TmxjTmxj/cnc-cam-gcode-simulator',
+    featured: false,
+    year: '2026',
+    role: 'Sole developer — DXF import, CAM toolpaths, Fanuc G-code generation, 2D/3D simulation',
+    background: '[TODO: your background — why a desktop CAM/G-code tool]',
+    problem: '[TODO: the concrete problem — e.g. CAM toolchains are heavy and expensive for learning and small jobs]',
+    solution: '[TODO: how it solves it — e.g. an all-in-one desktop flow from DXF to simulated G-code]',
+    highlights: [
+      'DXF import',
+      'CAM toolpath generation',
+      'Fanuc G-code output',
+      '2D/3D simulation, milling + turning modes',
+    ],
+    status: 'maintained',
+    isPlaceholder: true,
+  },
+  {
+    title: 'Shrapnel Force Predictor',
+    slug: 'shrapnel-force-predictor',
+    description:
+      'A machine-learning system that predicts shrapnel spring force: Creo parametric modeling + batch Abaqus simulation + multi-model regression — 3.72% accuracy gap vs. simulation.',
+    longDescription:
+      'ML replaces repeated simulation: parametric models are built in Creo, batch simulations run in Abaqus to build a dataset, and multiple regression models are trained to predict shrapnel force directly — reaching a prediction error of 3.72% versus simulation.',
+    image: '/projects/shrapnel-force-predictor/cover.svg',
+    imageAlt: 'Parametric model → batch simulation → ML prediction',
+    categories: ['engineering', 'research'],
+    tags: ['ML', 'Abaqus', 'Creo', 'CAE'],
+    technologies: ['Python', 'Creo', 'Abaqus', 'ML Regression'],
+    github: `${GH}/shrapnel-force-predictor`,
+    githubRepo: 'TmxjTmxj/shrapnel-force-predictor',
+    featured: false,
+    year: '2026',
+    role: 'Sole developer — parametric modeling, batch simulation pipeline, model training & evaluation',
+    background: '[TODO: your background — why predict instead of simulate]',
+    problem: '[TODO: the concrete problem — e.g. each Abaqus run takes too long for design iteration]',
+    solution: '[TODO: how it solves it — e.g. Creo + Abaqus generate a dataset, ML models predict force in milliseconds]',
+    highlights: [
+      'Creo parametric modeling',
+      'Batch Abaqus simulation pipeline',
+      'Multi-model regression with comparison',
+    ],
     results: [
-      '[RESULT_01] Replace with real numbers (variants/day, time saved)',
+      'Prediction error within 3.72% of Abaqus simulation results',
+      '[TODO: dataset size, models compared, prediction speedup]',
+    ],
+    status: 'maintained',
+    isPlaceholder: true,
+  },
+  {
+    title: 'ANSYS Mechanical Simulation Cases',
+    slug: 'ansys-mech-sim-cases',
+    description:
+      'Structural analysis of typical components: SolidWorks parametric modeling + ANSYS Workbench/Fluent simulation (turbine blades, cylinder coaxiality, rolling bearings), automated end-to-end by a Codex AI agent through an MCP toolchain.',
+    longDescription:
+      'A library of mechanical analysis cases — turbine blades, cylinder coaxiality, rolling bearings — where SolidWorks parametric models are driven into ANSYS Workbench/Fluent simulations. The whole loop is automated end-to-end by a Codex AI agent through an MCP toolchain.',
+    image: '/projects/ansys-mech-sim-cases/cover.svg',
+    imageAlt: 'SolidWorks model automated into ANSYS simulation',
+    categories: ['engineering', 'ai-agents'],
+    tags: ['ANSYS', 'SolidWorks', 'MCP', 'AI Automation'],
+    technologies: ['SolidWorks', 'ANSYS Workbench', 'Fluent', 'MCP'],
+    github: `${GH}/ansys-mech-sim-cases`,
+    githubRepo: 'TmxjTmxj/ansys-mech-sim-cases',
+    featured: false,
+    year: '2026',
+    role: 'Author — parametric models, simulation setups, MCP-driven end-to-end automation',
+    background: '[TODO: your background — why automate CAE workflows with agents]',
+    problem: '[TODO: the concrete problem — e.g. manual CAD→CAE workflows are repetitive and error-prone]',
+    solution: '[TODO: how it solves it — e.g. an AI agent drives SolidWorks + ANSYS through MCP tools end-to-end]',
+    highlights: [
+      'Turbine blade / cylinder coaxiality / rolling bearing cases',
+      'SolidWorks parametric modeling',
+      'ANSYS Workbench + Fluent simulation',
+      'End-to-end automation by a Codex AI agent via MCP',
     ],
     status: 'maintained',
     isPlaceholder: true,

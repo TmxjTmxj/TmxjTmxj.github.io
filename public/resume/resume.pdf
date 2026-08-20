@@ -15,25 +15,28 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 1395 >>
+<< /Length 1693 >>
 stream
-BT /F2 22 Tf 50 742 Td ([YOUR_NAME]) Tj ET
-BT /F1 12 Tf 50 722 Td (AI Agent / Robotics / Software Engineer) Tj ET
-BT /F1 10 Tf 50 704 Td ([YOUR_EMAIL]  |  github.com/your-github-username  |  [YOUR_LOCATION]) Tj ET
+BT /F2 22 Tf 50 742 Td (Tianmo Xuejia) Tj ET
+BT /F1 12 Tf 50 722 Td (AI Agent Engineer · Intelligent Manufacturing) Tj ET
+BT /F1 10 Tf 50 704 Td (yztmxj@163.com  |  github.com/TmxjTmxj  |  Shandong University · China) Tj ET
 BT /F2 11 Tf 50 664 Td (PLACEHOLDER RESUME) Tj ET
 BT /F1 10 Tf 50 646 Td (This file is a placeholder. Replace public/resume/resume.pdf with your real resume PDF.) Tj ET
 BT /F2 12 Tf 50 606 Td (Summary) Tj ET
-BT /F1 10 Tf 50 590 Td (Engineer focused on AI agents, robotics and engineering software.) Tj ET
-BT /F2 12 Tf 50 550 Td (Experience) Tj ET
-BT /F1 10 Tf 50 534 Td ([COMPANY_01] - Robotics / AI Engineering Intern \(2025 - Present\)) Tj ET
-BT /F1 10 Tf 50 520 Td ([UNIVERSITY] Intelligent Systems Lab - Research Assistant \(2024 - 2025\)) Tj ET
-BT /F2 12 Tf 50 480 Td (Skills) Tj ET
-BT /F1 10 Tf 50 464 Td (Python · C++ · TypeScript · ROS2 · LLM / AI Agents · Computer Vision · Docker · Linux) Tj ET
-BT /F2 12 Tf 50 424 Td (Projects) Tj ET
-BT /F1 10 Tf 50 408 Td (AI-Agent Robot Control System - natural language to ROS2 task execution) Tj ET
-BT /F1 10 Tf 50 394 Td (Multi-Agent Task Orchestration Framework - typed messaging, shared memory, evals) Tj ET
-BT /F2 12 Tf 50 354 Td (Education) Tj ET
-BT /F1 10 Tf 50 338 Td ([UNIVERSITY_NAME], [DEGREE] in [MAJOR] \([GRAD_YEAR]\)) Tj ET
+BT /F1 10 Tf 50 590 Td (Independent developer building AI agents: multi-agent orchestration, layered-memory agent) Tj ET
+BT /F1 10 Tf 50 576 Td (cores, ROS2 + MCP robot control and AI for intelligent manufacturing.) Tj ET
+BT /F2 12 Tf 50 536 Td (Experience) Tj ET
+BT /F1 10 Tf 50 520 Td (Independent Developer - AI Agent Builder \(2026 - Present\)) Tj ET
+BT /F1 10 Tf 50 506 Td (Shandong University - Mechanical Engineering Student) Tj ET
+BT /F2 12 Tf 50 466 Td (Skills) Tj ET
+BT /F1 10 Tf 50 450 Td (Python · Rust · TypeScript · ROS2 · Gazebo · MCP · LLM / AI Agents · RAG · Abaqus · ANSYS) Tj ET
+BT /F2 12 Tf 50 410 Td (Projects) Tj ET
+BT /F1 10 Tf 50 394 Td (ROS2 Agent Workflow - MCP-controlled ROS2 + Gazebo simulation) Tj ET
+BT /F1 10 Tf 50 380 Td (Agent Orchestrator - plan/delegate/execute/collect multi-agent framework) Tj ET
+BT /F1 10 Tf 50 366 Td (Beifeng Wind Agent - Rust wind-farm O&M agent \(RAG, diagnosis, Tauri\)) Tj ET
+BT /F1 10 Tf 50 352 Td (Hermes Agent Core - consciousness engine + four-layer memory) Tj ET
+BT /F2 12 Tf 50 312 Td (Education) Tj ET
+BT /F1 10 Tf 50 296 Td (Shandong University - Mechanical Engineering \([GRAD_YEAR]\)) Tj ET
 BT /F1 8 Tf 50 60 Td (Generated placeholder - replace with your real resume PDF) Tj ET
 endstream
 endobj
@@ -49,5 +52,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-1842
+2140
 %%EOF

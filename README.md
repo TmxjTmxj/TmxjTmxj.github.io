@@ -114,7 +114,9 @@ Requires Node ≥ 20.
 
 ## Content Guide
 
-The site is **fully data-driven**. All recruiter-facing text lives in `src/data/*.ts` — components contain no hard-coded copy. Follow **`CONTENT_TODO.md`** as your checklist; every placeholder is listed there.
+The site is **fully data-driven**. All recruiter-facing text lives in `src/data/*.ts` — components contain no hard-coded copy. Follow **`CONTENT_TODO.md`** as your checklist; every remaining placeholder is listed there.
+
+Current identity (already wired in): 天漠雪佳 · TmxjTmxj · yztmxj@163.com · live GitHub stats via the public API. Projects are your real repositories with real links, descriptions and technologies — narrative fields (background / problem / solution / challenges / results) still carry `[TODO]` markers where your own words are needed.
 
 ### Update Your Profile
 
@@ -214,13 +216,11 @@ Set `githubUsername` in `src/data/profile.ts`. The homepage then shows live prof
 
 ### SEO / Social Preview
 
-- `public/og/og-image.png` (1200×630) is generated from `scripts/og-card.html`. After replacing `[YOUR_NAME]` with your name, re-render it:
+- `public/og/og-image.png` (1200×630) is generated from `scripts/og-card.html` (currently branded with 天漠雪佳 / tmxjtmxj). After changing branding, re-render it:
 
 ```bash
 chrome --headless=new --window-size=1200,630 --screenshot=public/og/og-image.png scripts/og-card.html
 ```
-
-(or open the file in a browser and screenshot it)
 
 - Per-route titles/descriptions/OG tags are handled in `src/lib/seo.ts`.
 - `public/sitemap.xml` + `public/robots.txt` use a placeholder domain — replace it, then submit the sitemap in Google Search Console.
@@ -265,7 +265,7 @@ Output: `dist/` — deployable as-is.
 2. Push this folder:
 
 ```bash
-git remote add origin https://github.com/<username>/<username>.github.io.git
+git remote add origin https://github.com/TmxjTmxj/TmxjTmxj.github.io.git
 git push -u origin main
 ```
 
@@ -279,7 +279,7 @@ git commit -m "update portfolio"
 git push
 ```
 
-The workflow (`.github/workflows/deploy.yml`) builds and deploys automatically; check progress under the repo's **Actions** tab. The site goes live at `https://<username>.github.io/`.
+The workflow (`.github/workflows/deploy.yml`) builds and deploys automatically; check progress under the repo's **Actions** tab. The site goes live at `https://tmxjtmxj.github.io/`.
 
 ### Custom Domain
 

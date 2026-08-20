@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="orchestrator / run">
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <rect x="60" y="50" width="1080" height="700" rx="12" fill="#161b22" stroke="#30363d"/>
+  <rect x="60" y="50" width="1080" height="40" rx="12" fill="#21262d"/>
+  <rect x="60" y="78" width="1080" height="12" fill="#21262d"/>
+  <circle cx="88" cy="70" r="6" fill="#f85149"/>
+  <circle cx="110" cy="70" r="6" fill="#d29922"/>
+  <circle cx="132" cy="70" r="6" fill="#3fb950"/>
+  <rect x="160" y="58" width="880" height="24" rx="6" fill="#0d1117" stroke="#30363d"/>
+  <text x="176" y="75" font-family="monospace" font-size="13" fill="#8b949e">orchestrator / run</text>
+  <rect x="84" y="114" width="1032" height="612" rx="8" fill="#010409"/>
+<text x="100" y="150" font-family="monospace" font-size="15" fill="#3fb950">$ python run.py --task "build a report" --roles 6</text><text x="100" y="180" font-family="monospace" font-size="15" fill="#e6edf3">[planner] plan: 4 steps, 3 workers</text><text x="100" y="210" font-family="monospace" font-size="15" fill="#e6edf3">[delegate] worker-1 ← research · worker-2 ← draft · worker-3 ← data</text><text x="100" y="240" font-family="monospace" font-size="15" fill="#e6edf3">[collect] results merged (2.1 s)</text><text x="100" y="270" font-family="monospace" font-size="15" fill="#d29922">[worker-3] failed once - isolated, retried</text><text x="100" y="300" font-family="monospace" font-size="15" fill="#e6edf3">[done] report written: out/report.md</text>
+<text x="100" y="338" font-family="monospace" font-size="15" fill="#3fb950">▊</text>
+</svg>

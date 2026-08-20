@@ -1,7 +1,7 @@
 {
-  "name": "[YOUR_NAME] - Developer Portfolio",
-  "short_name": "[YOUR_NAME]",
-  "description": "AI Agent / Robotics / Software Engineer - developer portfolio.",
+  "name": "天漠雪佳 - AI Agent Engineer",
+  "short_name": "TMXJ",
+  "description": "AI Agent Engineer - multi-agent systems, ROS2 + MCP robot control, intelligent manufacturing.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6f8fa",

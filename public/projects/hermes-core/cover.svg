@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Hermes Agent Core">
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#21262d" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#db61a2" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#db61a2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <text x="60" y="64" font-family="monospace" font-size="16" fill="#db61a2">agent_core / memory</text>
+  <text x="1140" y="64" text-anchor="end" font-family="monospace" font-size="14" fill="#8b949e">placeholder asset</text>
+  <line x1="600" y1="300" x2="300" y2="160" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="600" y1="300" x2="900" y2="160" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="600" y1="300" x2="300" y2="440" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="600" y1="300" x2="900" y2="440" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="600" y1="300" x2="150" y2="300" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="600" y1="300" x2="1050" y2="300" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="300" y1="160" x2="900" y2="160" stroke="#db61a2" stroke-width="1" opacity="0.3"/><line x1="900" y1="160" x2="300" y2="440" stroke="#db61a2" stroke-width="1" opacity="0.3"/>
+  
+  <circle cx="600" cy="300" r="7" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="600" cy="300" r="2.5" fill="#db61a2"/>
+  <text x="600" y="286" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">consciousness</text>
+  <circle cx="600" cy="300" r="14" fill="none" stroke="#db61a2" stroke-width="1" opacity="0.35"/>
+  <circle cx="300" cy="160" r="7" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="300" cy="160" r="2.5" fill="#db61a2"/>
+  <text x="300" y="146" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">working</text>
+  <circle cx="900" cy="160" r="7" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="900" cy="160" r="2.5" fill="#db61a2"/>
+  <text x="900" y="146" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">episodic</text>
+  <circle cx="300" cy="440" r="7" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="300" cy="440" r="2.5" fill="#db61a2"/>
+  <text x="300" y="426" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">semantic</text>
+  <circle cx="900" cy="440" r="7" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="900" cy="440" r="2.5" fill="#db61a2"/>
+  <text x="900" y="426" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">persona</text>
+  <circle cx="150" cy="300" r="6" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="150" cy="300" r="2.5" fill="#db61a2"/>
+  <circle cx="1050" cy="300" r="6" fill="#db61a222" stroke="#db61a2" stroke-width="1.5"/>
+  <circle cx="1050" cy="300" r="2.5" fill="#db61a2"/>
+  <rect x="60" y="610" width="6" height="52" fill="#db61a2"/>
+  <text x="86" y="648" font-family="Inter, system-ui, sans-serif" font-size="40" font-weight="700" fill="#e6edf3">Hermes Agent Core</text>
+  <text x="88" y="688" font-family="monospace" font-size="17" fill="#8b949e">consciousness engine · four-layer memory</text>
+</svg>

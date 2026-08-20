@@ -72,7 +72,7 @@ export function Navbar() {
           onClick={() => setOpen(false)}
         >
           <span className="text-accent">~/</span>
-          <span>{profile.name.toLowerCase().replace(/\s+/g, '-')}</span>
+          <span>{profile.handle}</span>
           <span className="cursor-blink text-green" aria-hidden="true" />
         </Link>
 

@@ -8,22 +8,22 @@
  */
 
 export const siteConfig = {
-  /** Final site URL. Replace when your GitHub username is known.
-   *  Used for canonical URLs, sitemap and social previews. */
-  url: 'https://your-github-username.github.io',
-  title: '[YOUR_NAME] · AI Agent / Robotics / Software Engineer',
+  /** Final site URL (GitHub Pages user site). */
+  url: 'https://tmxjtmxj.github.io',
+  title: '天漠雪佳 · AI Agent Engineer',
   description:
-    'Developer portfolio of [YOUR_NAME] - AI Agent / Robotics / Software Engineer building intelligent systems that connect AI agents, software and physical machines.',
+    'Portfolio of 天漠雪佳 (TmxjTmxj) — AI Agent Engineer building multi-agent systems, ROS2 + MCP robot control and AI for intelligent manufacturing.',
   keywords: [
-    'AI Engineer',
-    'Robotics Engineer',
+    'AI Agent Engineer',
     'AI Agent',
     'ROS2',
-    'LLM',
-    'Software Engineer',
+    'MCP',
+    'Intelligent Manufacturing',
+    'Rust',
+    'Python',
     'Portfolio',
   ],
-  author: '[YOUR_NAME]',
+  author: '天漠雪佳',
   language: 'en',
   ogImage: '/og/og-image.png',
 
@@ -83,7 +83,7 @@ export const copy = {
     featuredLabel: 'Featured Projects',
     featuredTitle: 'Selected work',
     featuredSubtitle:
-      'Selected projects spanning AI agents, robotics, engineering software and intelligent systems.',
+      'AI agents, ROS2 robotics, engineering software and intelligent manufacturing — built end-to-end, open sourced on GitHub.',
     viewAll: 'View all projects',
     experienceLabel: 'Experience',
     experienceTitle: 'Where I’ve worked',
@@ -99,7 +99,7 @@ export const copy = {
   projects: {
     title: 'Projects',
     subtitle:
-      'Selected projects spanning AI agents, robotics, engineering software and intelligent systems.',
+      'AI agents, ROS2 robotics, engineering software and intelligent manufacturing — all open source on GitHub.',
     searchPlaceholder: 'Search projects…',
     searchLabel: 'Search projects by name, technology, category or description',
     filterLabel: 'Filter projects by category',
@@ -204,7 +204,7 @@ export const copy = {
     unavailable: 'GitHub statistics are temporarily unavailable.',
   },
   footer: {
-    tagline: 'AI · Robotics · Intelligent Systems',
+    tagline: 'AI Agent × Intelligent Manufacturing',
     builtWith: 'Built with React + TypeScript',
     hostedOn: 'Hosted on GitHub Pages',
     copyright: 'All rights reserved.',
@@ -224,11 +224,11 @@ export const copy = {
     // Typed lines in the hero terminal (prefix `$` is added automatically).
     lines: [
       'whoami',
-      'AI Agent / Robotics / Software Engineer',
+      'AI Agent Engineer · Intelligent Manufacturing',
       'cat interests.txt',
-      'AI Agents · Robotics · Intelligent Systems · Open Source',
+      'AI Agents · Intelligent Manufacturing · Embodied Intelligence · ROS2',
       'cat location.txt',
-      'Earth · Remote friendly',
+      'Shandong University · China',
       'cat status.txt',
       'Open to opportunities',
     ],

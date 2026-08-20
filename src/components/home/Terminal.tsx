@@ -19,7 +19,7 @@ export function Terminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#d29922]/90" aria-hidden="true" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#3fb950]/90" aria-hidden="true" />
         <span className="ml-2 font-mono text-xs text-code-ink/80">
-          {profile.name.toLowerCase().replace(/\s+/g, '-')}@portfolio: ~
+          {profile.handle}@portfolio: ~
         </span>
       </div>
 

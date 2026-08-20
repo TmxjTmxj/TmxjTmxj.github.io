@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="AI-Agent Robot Control">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="ROS2 Agent Workflow">
   <rect width="1200" height="800" fill="#0d1117"/>
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -11,7 +11,7 @@
   </defs>
   <rect width="1200" height="800" fill="url(#grid)"/>
   <rect width="1200" height="800" fill="url(#glow)"/>
-  <text x="60" y="64" font-family="monospace" font-size="16" fill="#4493f8">ai_agents / ros2 / cv</text>
+  <text x="60" y="64" font-family="monospace" font-size="16" fill="#4493f8">mcp / ros2 / gazebo</text>
   <text x="1140" y="64" text-anchor="end" font-family="monospace" font-size="14" fill="#8b949e">placeholder asset</text>
   <line x1="600" y1="330" x2="300" y2="180" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="330" x2="900" y2="180" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="330" x2="180" y2="380" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="330" x2="1020" y2="380" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="330" x2="420" y2="500" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="330" x2="780" y2="500" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="420" y1="500" x2="600" y2="590" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="780" y1="500" x2="600" y2="590" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="590" x2="330" y2="620" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="600" y1="590" x2="870" y2="620" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="300" y1="180" x2="180" y2="380" stroke="#4493f8" stroke-width="1" opacity="0.3"/><line x1="900" y1="180" x2="1020" y2="380" stroke="#4493f8" stroke-width="1" opacity="0.3"/>
   
@@ -29,18 +29,18 @@
   <circle cx="1020" cy="380" r="2.5" fill="#4493f8"/>
   <circle cx="420" cy="500" r="7" fill="#4493f822" stroke="#4493f8" stroke-width="1.5"/>
   <circle cx="420" cy="500" r="2.5" fill="#4493f8"/>
-  <text x="420" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">planner</text>
+  <text x="420" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">mcp</text>
   <circle cx="780" cy="500" r="7" fill="#4493f822" stroke="#4493f8" stroke-width="1.5"/>
   <circle cx="780" cy="500" r="2.5" fill="#4493f8"/>
-  <text x="780" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">supervisor</text>
+  <text x="780" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">ros2</text>
   <circle cx="600" cy="590" r="7" fill="#4493f822" stroke="#4493f8" stroke-width="1.5"/>
   <circle cx="600" cy="590" r="2.5" fill="#4493f8"/>
-  <text x="600" y="576" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">ros2</text>
+  <text x="600" y="576" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">gazebo</text>
   <circle cx="330" cy="620" r="5" fill="#4493f822" stroke="#4493f8" stroke-width="1.5"/>
   <circle cx="330" cy="620" r="2.5" fill="#4493f8"/>
   <circle cx="870" cy="620" r="5" fill="#4493f822" stroke="#4493f8" stroke-width="1.5"/>
   <circle cx="870" cy="620" r="2.5" fill="#4493f8"/>
   <rect x="60" y="610" width="6" height="52" fill="#4493f8"/>
-  <text x="86" y="648" font-family="Inter, system-ui, sans-serif" font-size="40" font-weight="700" fill="#e6edf3">AI-Agent Robot Control</text>
-  <text x="88" y="688" font-family="monospace" font-size="17" fill="#8b949e">natural language → validated task graph → real-time control</text>
+  <text x="86" y="648" font-family="Inter, system-ui, sans-serif" font-size="40" font-weight="700" fill="#e6edf3">ROS2 Agent Workflow</text>
+  <text x="88" y="688" font-family="monospace" font-size="17" fill="#8b949e">LLM agent → MCP server → ROS2 → Gazebo robot</text>
 </svg>

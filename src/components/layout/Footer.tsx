@@ -13,7 +13,7 @@ export function Footer() {
         <div>
           <p className="font-mono text-[15px] font-medium">
             <span className="text-accent">~/</span>
-            {profile.name.toLowerCase().replace(/\s+/g, '-')}
+            {profile.handle}
           </p>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-ink-muted">{profile.tagline}</p>
           <p className="mt-3 font-mono text-xs text-ink-muted">{copy.footer.tagline}</p>
