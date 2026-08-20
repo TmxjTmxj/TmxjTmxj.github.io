@@ -75,16 +75,16 @@
          ('' on username.github.io, '/repo' on project pages). -->
     <script>
       (function (l) {
-        if (l.search[1] === '/') {
+        var m = /^\?p=([^&]*)(?:&q=([^#]*))?/.exec(l.search);
+        if (m) {
           var base = '__BASE__';
-          var decoded = l.search
-            .slice(1)
-            .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&');
-            })
-            .join('?');
-          window.history.replaceState(null, null, base + decoded + l.hash);
+          var path = m[1].replace(/~and~/g, '&');
+          var query = m[2] ? m[2].replace(/~and~/g, '&') : '';
+          window.history.replaceState(
+            null,
+            null,
+            base + path + (query ? '?' + query : '') + l.hash
+          );
         }
       })(window.location);
     </script>
