@@ -9,7 +9,15 @@ import { copy, categoryLabels } from '../../data/site';
 import { asset } from '../../lib/utils';
 import { Badge } from '../ui/Badge';
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  headingLevel = 'h3',
+}: {
+  project: Project;
+  /** h2 when cards sit directly under the page h1 (Projects page), h3 inside a section. */
+  headingLevel?: 'h2' | 'h3';
+}) {
+  const Heading = headingLevel;
   return (
     <article className="card card-hover group flex h-full flex-col overflow-hidden">
       <Link
@@ -36,11 +44,11 @@ export function ProjectCard({ project }: { project: Project }) {
           {project.isPlaceholder && <Badge tone="warn">{copy.projects.placeholderBadge}</Badge>}
         </div>
 
-        <h3 className="mt-3 text-lg font-bold tracking-tight">
+        <Heading className="mt-3 text-lg font-bold tracking-tight">
           <Link to={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
             {project.title}
           </Link>
-        </h3>
+        </Heading>
         <p className="clamp-3 mt-2 text-sm leading-relaxed text-ink-muted">
           {project.description}
         </p>

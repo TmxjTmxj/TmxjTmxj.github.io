@@ -18,14 +18,14 @@ export function Terminal() {
         <span className="h-2.5 w-2.5 rounded-full bg-[#f85149]/90" aria-hidden="true" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#d29922]/90" aria-hidden="true" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#3fb950]/90" aria-hidden="true" />
-        <span className="ml-2 font-mono text-xs text-code-ink/60">
+        <span className="ml-2 font-mono text-xs text-code-ink/80">
           {profile.name.toLowerCase().replace(/\s+/g, '-')}@portfolio: ~
         </span>
       </div>
 
       {/* Body */}
       <div className="min-h-[210px] p-4 font-mono text-[13px] leading-relaxed sm:p-5">
-        <p aria-hidden="true" className="text-code-ink/60">
+        <p aria-hidden="true" className="text-code-ink/80">
           # {copy.hero.availability}
         </p>
         {typed.map((line, i) => {

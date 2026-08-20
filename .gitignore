@@ -24,3 +24,6 @@ Thumbs.db
 
 # Vite cache
 .vite/
+
+# Local verification artifacts (screenshots, lighthouse reports)
+screenshots/

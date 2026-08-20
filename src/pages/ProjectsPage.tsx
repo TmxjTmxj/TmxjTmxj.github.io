@@ -90,7 +90,7 @@ export function ProjectsPage() {
       {filtered.length > 0 ? (
         <div key={`${category}-${query}`} className="filter-enter mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} headingLevel="h2" />
           ))}
         </div>
       ) : (
