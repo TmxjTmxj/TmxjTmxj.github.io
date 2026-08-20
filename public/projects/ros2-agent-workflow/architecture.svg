@@ -1,53 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Agent → MCP Server → ROS2 → Gazebo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="Arial, Helvetica, sans-serif">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4493f8"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
     </marker>
+    <linearGradient id="boxAI" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B8DEF"/><stop offset="100%" stop-color="#3A6ED8"/>
+    </linearGradient>
+    <linearGradient id="boxMCP" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22B07D"/><stop offset="100%" stop-color="#17895F"/>
+    </linearGradient>
+    <linearGradient id="boxROS" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2673A"/><stop offset="100%" stop-color="#D24A1F"/>
+    </linearGradient>
+    <linearGradient id="boxGZ" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B61C7"/><stop offset="100%" stop-color="#5C46A3"/>
+    </linearGradient>
   </defs>
-  <rect width="1200" height="800" fill="#f6f8fa"/>
-  <text x="60" y="60" font-family="monospace" font-size="15" fill="#4493f8">// system-architecture</text>
-  <text x="60" y="92" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="700" fill="#1f2328">Agent → MCP Server → ROS2 → Gazebo</text>
-  
-  <g>
-    <rect x="60" y="160" width="200" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="160" y="195" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">LLM Agent</text>
-    <text x="160" y="219" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">tool-calling</text></g>
-  <g>
-    <rect x="340" y="160" width="200" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="440" y="195" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">MCP Server</text>
-    <text x="440" y="219" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">FastMCP</text></g>
-  <g>
-    <rect x="620" y="160" width="220" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="730" y="195" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">ROS2 Nodes</text>
-    <text x="730" y="219" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">lyrical</text></g>
-  <g>
-    <rect x="920" y="160" width="220" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="1030" y="195" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">Gazebo</text>
-    <text x="1030" y="219" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">simulation</text></g>
-  <g>
-    <rect x="920" y="420" width="220" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="1030" y="455" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">Robot</text>
-    <text x="1030" y="479" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">physical / sim</text></g>
-  <g>
-    <rect x="60" y="420" width="200" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="160" y="455" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">Demo Scripts</text>
-    <text x="160" y="479" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">one-click</text></g>
-  <g>
-    <rect x="340" y="420" width="200" height="90" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-    <text x="440" y="455" text-anchor="middle" font-family="monospace" font-size="15" font-weight="600" fill="#1f2328">Skill Docs</text>
-    <text x="440" y="479" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">reproducible runs</text></g>
-  
-  <line x1="160" y1="205" x2="440" y2="205" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="300" y="197" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">tool call</text>
-  <line x1="440" y1="205" x2="730" y2="205" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="585" y="197" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">commands</text>
-  <line x1="730" y1="205" x2="1030" y2="205" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="880" y="197" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">topics</text>
-  <line x1="1030" y1="205" x2="1030" y2="465" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="1030" y="327" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">state</text>
-  <line x1="160" y1="465" x2="440" y2="205" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="300" y="327" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">boot</text>
-  <line x1="440" y1="465" x2="160" y2="205" stroke="#4493f8" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="300" y="327" text-anchor="middle" font-family="monospace" font-size="11" fill="#59636e">skills</text>
-  <text x="60" y="760" font-family="monospace" font-size="12" fill="#59636e">placeholder diagram - replace with the real architecture</text>
+
+  <!-- Title -->
+  <text x="450" y="36" text-anchor="middle" font-size="22" font-weight="bold" fill="#222">Agent 自动化控制 ROS2 架构</text>
+
+  <!-- AI Agent -->
+  <rect x="250" y="60" width="400" height="70" rx="12" fill="url(#boxAI)"/>
+  <text x="450" y="90" text-anchor="middle" font-size="17" font-weight="bold" fill="#fff">AI Agent（Codex / Claude / 任意 MCP 客户端）</text>
+  <text x="450" y="112" text-anchor="middle" font-size="12" fill="#E8EFFF">任务级意图 · 无权限直控 ROS</text>
+
+  <!-- MCP Server -->
+  <rect x="250" y="180" width="400" height="80" rx="12" fill="url(#boxMCP)"/>
+  <text x="450" y="210" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">MCP Server（FastMCP）</text>
+  <text x="450" y="232" text-anchor="middle" font-size="12" fill="#E8FFF4">discover_robot · validate_profile · arm_robot · run_task</text>
+  <text x="450" y="248" text-anchor="middle" font-size="12" fill="#E8FFF4">emergency_stop · get_evidence · observe</text>
+
+  <!-- Safety Gateway -->
+  <rect x="250" y="310" width="400" height="70" rx="12" fill="#F5A623" opacity="0.92"/>
+  <text x="450" y="340" text-anchor="middle" font-size="16" font-weight="bold" fill="#fff">安全网关（Fail-Closed）</text>
+  <text x="450" y="362" text-anchor="middle" font-size="12" fill="#FFF8E8">激活许可 · 心跳监控 · 急停闩锁 · 审计</text>
+
+  <!-- Adapters -->
+  <rect x="60" y="430" width="230" height="90" rx="12" fill="url(#boxROS)"/>
+  <text x="175" y="462" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">ROS2 Adapters</text>
+  <text x="175" y="484" text-anchor="middle" font-size="12" fill="#FFE9E0">Twist · Nav2 · Hospital</text>
+  <text x="175" y="502" text-anchor="middle" font-size="11" fill="#FFE9E0">有界执行 · 急停优先</text>
+
+  <!-- ROS2 -->
+  <rect x="340" y="430" width="220" height="90" rx="12" fill="url(#boxROS)"/>
+  <text x="450" y="462" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">ROS2 Lyrical</text>
+  <text x="450" y="484" text-anchor="middle" font-size="12" fill="#FFE9E0">rclpy 节点 · topics</text>
+  <text x="450" y="502" text-anchor="middle" font-size="11" fill="#FFE9E0">/cmd_vel · /odom</text>
+
+  <!-- Gazebo -->
+  <rect x="610" y="430" width="230" height="90" rx="12" fill="url(#boxGZ)"/>
+  <text x="725" y="462" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">Gazebo Sim 10</text>
+  <text x="725" y="484" text-anchor="middle" font-size="12" fill="#EFE9FF">医院病房世界</text>
+  <text x="725" y="502" text-anchor="middle" font-size="11" fill="#EFE9FF">AMR · 相机 · 接触</text>
+
+  <!-- Arrows: AI -> MCP -->
+  <line x1="450" y1="130" x2="450" y2="178" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="468" y="158" font-size="11" fill="#555">MCP 协议（stdio）</text>
+
+  <!-- MCP -> Safety -->
+  <line x1="450" y1="260" x2="450" y2="308" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- Safety -> Adapters/ROS/Gazebo -->
+  <line x1="290" y1="380" x2="175" y2="428" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="430" y1="380" x2="450" y2="428" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <line x1="590" y1="380" x2="660" y2="428" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- ROS <-> Gazebo bridge -->
+  <line x1="560" y1="500" x2="610" y2="500" stroke="#888" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="585" y="518" text-anchor="middle" font-size="10" fill="#888">ros_gz_bridge</text>
+
+  <!-- Evidence -->
+  <rect x="250" y="580" width="400" height="60" rx="12" fill="#8B8B8B"/>
+  <text x="450" y="608" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">可验证证据（Evidence）</text>
+  <text x="450" y="628" text-anchor="middle" font-size="12" fill="#EEE">JSON 审计 · 独立验收报告 · 截图</text>
+
+  <line x1="450" y1="520" x2="450" y2="578" stroke="#555" stroke-width="2.5" marker-end="url(#arrow)"/>
 </svg>

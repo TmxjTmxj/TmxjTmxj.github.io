@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#555"/>
+    </marker>
+  </defs>
+  <text x="450" y="32" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">安全状态机（Fail-Closed）</text>
+
+  <!-- NEW -->
+  <ellipse cx="140" cy="150" rx="80" ry="42" fill="#E0E0E0" stroke="#888"/>
+  <text x="140" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">NEW</text>
+  <text x="140" y="163" text-anchor="middle" font-size="10" fill="#666">未激活</text>
+
+  <!-- DISCOVERED -->
+  <ellipse cx="330" cy="150" rx="95" ry="42" fill="#BBDEFB" stroke="#4A90D9"/>
+  <text x="330" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#1A3E6E">DISCOVERED</text>
+  <text x="330" y="163" text-anchor="middle" font-size="10" fill="#3A6E9E">已发现</text>
+
+  <!-- RUNNING -->
+  <ellipse cx="560" cy="150" rx="100" ry="48" fill="#C8E6C9" stroke="#43A047"/>
+  <text x="560" y="143" text-anchor="middle" font-size="15" font-weight="bold" fill="#1B5E20">RUNNING</text>
+  <text x="560" y="163" text-anchor="middle" font-size="10" fill="#2E7D32">任务执行中</text>
+
+  <!-- ESTOPPED -->
+  <ellipse cx="780" cy="150" rx="90" ry="42" fill="#FFCDD2" stroke="#D32F2F"/>
+  <text x="780" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="#B71C1C">ESTOPPED</text>
+  <text x="780" y="163" text-anchor="middle" font-size="10" fill="#C62828">急停闩锁</text>
+
+  <!-- FAULTED -->
+  <ellipse cx="560" cy="330" rx="100" ry="42" fill="#FFF3E0" stroke="#EF6C00"/>
+  <text x="560" y="325" text-anchor="middle" font-size="14" font-weight="bold" fill="#E65100">FAULTED</text>
+  <text x="560" y="343" text-anchor="middle" font-size="10" fill="#EF6C00">故障/心跳丢失</text>
+
+  <!-- transitions -->
+  <line x1="220" y1="150" x2="235" y2="150" stroke="#555" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="228" y="138" text-anchor="middle" font-size="10" fill="#555">discover</text>
+
+  <line x1="425" y1="150" x2="460" y2="150" stroke="#555" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="443" y="138" text-anchor="middle" font-size="10" fill="#555">arm + start</text>
+
+  <path d="M 560 198 C 560 260, 560 260, 560 286" fill="none" stroke="#EF6C00" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="575" y="248" font-size="10" fill="#EF6C00">watchdog / estop</text>
+
+  <path d="M 660 150 C 700 150, 730 150, 740 150" fill="none" stroke="#D32F2F" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="700" y="138" text-anchor="middle" font-size="10" fill="#D32F2F">estop</text>
+
+  <path d="M 690 185 C 640 260, 600 290, 570 300" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ar2)"/>
+  <text x="660" y="258" font-size="10" fill="#888">supervisor stop</text>
+
+  <path d="M 560 198 C 520 240, 400 260, 350 192" fill="none" stroke="#888" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ar2)"/>
+  <text x="430" y="262" font-size="10" fill="#888">recover</text>
+
+  <!-- legend -->
+  <text x="120" y="395" font-size="11" fill="#666">实线 = 正常流程 · 虚线 = 恢复流程 · 红色 = 安全急停</text>
+</svg>
