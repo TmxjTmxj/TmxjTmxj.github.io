@@ -17,7 +17,8 @@
 - [x] **设计 v2（Engineer Blueprint）**：蓝图网格 + 角标 + spec-index 区块 + 滚动进度条 + 导航下划线 + metric 读数 + 终端 READY
 - [x] 新增真实项目：lobster-core（五层 Agent 制造）、software-dev-team-skill（SOP 虚拟团队技能包）
 - [x] 修复：LinkedIn 未配置时不再显示（原占位链接是坏链）；简历页加联系方式条
-- [x] 统计同步：Projects 10 / GitHub 仓库 17 / AI Agents 7+，自动跟随浏览器语言
+- [x] 统计同步：Projects 10 / GitHub 仓库 17 / AI Agents 7+
+- [x] **v3**：整卡可点（stretched-link，修复"点不了"）+ hero AgentNet 连接网络动画 + 渐变高光；GitHub 统计改纯烘焙数据（彻底消除 403 控制台报错）；修复 target-size，自动跟随浏览器语言
 
 ## 1. 补几张图（低优先级）
 
