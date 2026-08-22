@@ -6,7 +6,9 @@ import { useProfile } from '../../i18n/use-content';
 export function Terminal() {
   const { t } = useI18n();
   const profile = useProfile();
-  const lines: string[] = [...t.terminal.lines];
+  // Stable reference (module-level copy object) - prevents an identity churn
+  // that used to reset the typewriter on every render.
+  const lines: string[] = t.terminal.lines;
   const typed = useTypewriter(lines);
 
   return (
