@@ -34,13 +34,18 @@ export function ContactPage() {
       href: profile.github,
       aria: t.contact.openGithub,
     },
-    {
-      icon: Linkedin,
-      label: t.contact.linkedin,
-      value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, ''),
-      href: profile.linkedin,
-      aria: t.contact.openLinkedin,
-    },
+    // LinkedIn only when the account is configured.
+    ...(profile.linkedin
+      ? [
+          {
+            icon: Linkedin,
+            label: t.contact.linkedin,
+            value: profile.linkedin.replace(/^https?:\/\/(www\.)?/, ''),
+            href: profile.linkedin,
+            aria: t.contact.openLinkedin,
+          },
+        ]
+      : []),
     {
       icon: MapPin,
       label: t.contact.location,

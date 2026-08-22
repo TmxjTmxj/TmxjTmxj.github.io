@@ -26,7 +26,9 @@ export const profile = {
   // Contact & socials
   email: 'yztmxj@163.com',
   github: 'https://github.com/TmxjTmxj',
-  linkedin: 'https://www.linkedin.com/in/[YOUR_LINKEDIN]',
+  // LinkedIn is not set yet - leave '' to hide LinkedIn everywhere,
+  // or paste your profile URL to show it.
+  linkedin: '',
   location: 'Shandong University · China',
 
   // GitHub username (no URL). Powers the live GitHub statistics section
@@ -44,8 +46,8 @@ export const profile = {
 
   // Quick stats under the hero. Plain config - edit freely.
   stats: [
-    { value: '8', label: 'Projects' },
-    { value: '16', label: 'GitHub Repositories' },
+    { value: '10', label: 'Projects' },
+    { value: '17', label: 'GitHub Repositories' },
     { value: '7+', label: 'AI Agents Built' },
     { value: '15+', label: 'Technologies' },
   ],

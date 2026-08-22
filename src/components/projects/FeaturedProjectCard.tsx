@@ -17,7 +17,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
   const stats = useRepoStats(project.githubRepo);
 
   return (
-    <article className="card card-hover grid overflow-hidden lg:grid-cols-[1.05fr_1fr]">
+    <article className="card card-accent card-hover grid overflow-hidden lg:grid-cols-[1.05fr_1fr]">
       {/* Cover */}
       <Link
         to={`/projects/${project.slug}`}

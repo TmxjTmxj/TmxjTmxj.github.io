@@ -23,7 +23,7 @@ export function GitHubStats() {
       <section className="border-t border-line bg-surface" aria-labelledby="github-title">
         <div className="container-page py-16 sm:py-20">
           <Reveal>
-            <SectionHeading id="github-title" label={t.home.githubLabel} title={t.home.githubTitle} />
+            <SectionHeading id="github-title" index="04" label={t.home.githubLabel} title={t.home.githubTitle} />
             <div className="card p-8 text-center">
               <Github className="mx-auto h-8 w-8 text-ink-muted" aria-hidden="true" />
               <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink-muted">
@@ -56,7 +56,7 @@ export function GitHubStats() {
     <section className="border-t border-line bg-surface" aria-labelledby="github-title">
       <div className="container-page py-16 sm:py-20">
         <Reveal>
-          <SectionHeading id="github-title" label={t.home.githubLabel} title={t.home.githubTitle} />
+          <SectionHeading id="github-title" index="04" label={t.home.githubLabel} title={t.home.githubTitle} />
         </Reveal>
         <Reveal>
           <div className="card grid gap-0 lg:grid-cols-[1.1fr_1fr]">

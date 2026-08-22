@@ -34,15 +34,17 @@ export function ContactSection() {
               <Github className="h-4 w-4" aria-hidden="true" />
               GitHub
             </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-5 py-2.5 text-sm text-ink transition-colors hover:border-line-strong hover:bg-elevated"
-            >
-              <Linkedin className="h-4 w-4" aria-hidden="true" />
-              LinkedIn
-            </a>
+            {profile.linkedin && (
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-5 py-2.5 text-sm text-ink transition-colors hover:border-line-strong hover:bg-elevated"
+              >
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+                LinkedIn
+              </a>
+            )}
           </div>
           <p className="mt-6 font-mono text-xs text-ink-muted">{t.contact.responseNote}</p>
         </Reveal>

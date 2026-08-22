@@ -35,7 +35,7 @@ export function Footer() {
           </ul>
         </nav>
 
-        {/* Socials */}
+        {/* Socials - LinkedIn only when configured */}
         <div>
           <ul className="flex flex-col gap-2 text-sm">
             <li>
@@ -48,16 +48,18 @@ export function Footer() {
                 <Github className="h-4 w-4" aria-hidden="true" /> GitHub
               </a>
             </li>
-            <li>
-              <a
-                href={profile.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-ink"
-              >
-                <Linkedin className="h-4 w-4" aria-hidden="true" /> LinkedIn
-              </a>
-            </li>
+            {profile.linkedin && (
+              <li>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-ink"
+                >
+                  <Linkedin className="h-4 w-4" aria-hidden="true" /> LinkedIn
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href={`mailto:${profile.email}`}

@@ -26,7 +26,7 @@ export function AboutPreview() {
           />
         </Reveal>
         <Reveal delayMs={80}>
-          <SectionHeading id="about-preview-title" label={t.home.aboutLabel} title={t.home.aboutTitle} />
+          <SectionHeading id="about-preview-title" index="05" label={t.home.aboutLabel} title={t.home.aboutTitle} />
           <p className="max-w-2xl text-[15px] leading-relaxed text-ink-soft">
             {profile.description}
           </p>

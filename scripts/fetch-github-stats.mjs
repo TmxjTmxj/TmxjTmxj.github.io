@@ -24,6 +24,8 @@ const trackedRepos = [
   'TmxjTmxj/agent-orchestrator',
   'TmxjTmxj/beifeng-wind-agent',
   'TmxjTmxj/hermes-core',
+  'TmxjTmxj/lobster-core',
+  'TmxjTmxj/software-dev-team-skill',
   'TmxjTmxj/tmxj-agent',
   'TmxjTmxj/cnc-cam-gcode-simulator',
   'TmxjTmxj/shrapnel-force-predictor',

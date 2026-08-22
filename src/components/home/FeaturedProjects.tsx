@@ -21,6 +21,7 @@ export function FeaturedProjects() {
       <Reveal>
         <SectionHeading
           id="featured-title"
+          index="01"
           label={t.home.featuredLabel}
           title={t.home.featuredTitle}
           subtitle={t.home.featuredSubtitle}

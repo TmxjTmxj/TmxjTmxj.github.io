@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-label="Beifeng Wind Agent">
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#21262d" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#39c5cf" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#39c5cf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <text x="60" y="64" font-family="monospace" font-size="16" fill="#39c5cf">rust / rag / wind_o&amp;m</text>
+  <text x="1140" y="64" text-anchor="end" font-family="monospace" font-size="14" fill="#8b949e">placeholder asset</text>
+  <line x1="140" y1="400" x2="340" y2="200" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="340" y1="200" x2="340" y2="400" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="340" y1="400" x2="560" y2="300" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="560" y1="300" x2="760" y2="300" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="760" y1="300" x2="960" y2="300" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="340" y1="400" x2="760" y2="500" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="560" y1="300" x2="560" y2="500" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="760" y1="300" x2="560" y2="500" stroke="#39c5cf" stroke-width="1" opacity="0.3"/><line x1="760" y1="500" x2="960" y2="300" stroke="#39c5cf" stroke-width="1" opacity="0.3"/>
+  
+  <circle cx="140" cy="400" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="140" cy="400" r="2.5" fill="#39c5cf"/>
+  <text x="140" y="386" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">docs</text>
+  <circle cx="140" cy="400" r="14" fill="none" stroke="#39c5cf" stroke-width="1" opacity="0.35"/>
+  <circle cx="340" cy="200" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="340" cy="200" r="2.5" fill="#39c5cf"/>
+  <text x="340" y="186" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">index</text>
+  <circle cx="340" cy="400" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="340" cy="400" r="2.5" fill="#39c5cf"/>
+  <text x="340" y="386" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">rag</text>
+  <circle cx="560" cy="300" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="560" cy="300" r="2.5" fill="#39c5cf"/>
+  <text x="560" y="286" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">diagnosis</text>
+  <circle cx="760" cy="300" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="760" cy="300" r="2.5" fill="#39c5cf"/>
+  <text x="760" y="286" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">risk</text>
+  <circle cx="960" cy="300" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="960" cy="300" r="2.5" fill="#39c5cf"/>
+  <text x="960" y="286" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">report</text>
+  <circle cx="760" cy="500" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="760" cy="500" r="2.5" fill="#39c5cf"/>
+  <text x="760" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">tauri</text>
+  <circle cx="560" cy="500" r="7" fill="#39c5cf22" stroke="#39c5cf" stroke-width="1.5"/>
+  <circle cx="560" cy="500" r="2.5" fill="#39c5cf"/>
+  <text x="560" y="486" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">benchmark</text>
+  <rect x="60" y="610" width="6" height="52" fill="#39c5cf"/>
+  <text x="86" y="648" font-family="Inter, system-ui, sans-serif" font-size="40" font-weight="700" fill="#e6edf3">Beifeng Wind Agent</text>
+  <text x="88" y="688" font-family="monospace" font-size="17" fill="#8b949e">RAG hub · fault diagnosis · risk · report · Tauri</text>
+</svg>

@@ -16,6 +16,7 @@ export function SkillsPreview() {
       <Reveal>
         <SectionHeading
           id="skills-preview-title"
+          index="03"
           label={t.home.skillsLabel}
           title={t.home.skillsTitle}
         />

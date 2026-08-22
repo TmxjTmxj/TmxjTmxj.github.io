@@ -54,12 +54,17 @@ function LanguageToggle() {
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
   const { t, lang, toggleLang } = useI18n();
   const profile = useProfile();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -78,14 +83,16 @@ export function Navbar() {
   const linkLabel = (key: (typeof navLinks)[number]['key']) => t.nav[key];
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-all duration-200',
-        scrolled || open
-          ? 'border-b border-line bg-canvas/90 shadow-sm backdrop-blur-md'
-          : 'border-b border-transparent bg-transparent',
-      )}
-    >
+    <>
+      <div className="progress-bar" style={{ width: `${progress}%` }} aria-hidden="true" />
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-40 transition-all duration-200',
+          scrolled || open
+            ? 'border-b border-line bg-canvas/90 shadow-sm backdrop-blur-md'
+            : 'border-b border-transparent bg-transparent',
+        )}
+      >
       <nav className="container-page flex h-14 items-center justify-between" aria-label="Main">
         {/* Brand */}
         <Link
@@ -107,10 +114,8 @@ export function Navbar() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 cn(
-                  'rounded-md px-3 py-1.5 text-sm transition-colors',
-                  isActive
-                    ? 'bg-elevated font-medium text-ink'
-                    : 'text-ink-muted hover:bg-elevated hover:text-ink',
+                  'nav-link rounded-md px-3 py-1.5 text-sm transition-colors',
+                  isActive ? 'is-active bg-transparent' : 'text-ink-muted hover:text-ink',
                 )
               }
             >
@@ -208,5 +213,6 @@ export function Navbar() {
         </div>
       </div>
     </header>
+    </>
   );
 }

@@ -431,6 +431,70 @@ export const projects: Project[] = [
     ],
     status: 'maintained',
   },
+  {
+    title: 'Lobster Agent Core',
+    slug: 'lobster-core',
+    description:
+      'A five-layer agent building framework — harness engineering with a 1189-line master harness: memory layering, skill factory, learning loop, consciousness engine and task system, plus subagent delegation and command security auditing.',
+    longDescription:
+      'A deep rework of an open-source agent framework centered on a 1189-line master harness: layered prompt hierarchy, auto-updating user profile, hybrid full-text memory search (FTS5 exact → LIKE fuzzy → LLM semantic), a skill catalog, standardized subagent delegation, command security auditing, session freezing with drift detection, and thinking-chain injection. Underneath sits a three-tier memory system (L1 identity, L2 scene context, L3 ChromaDB vector memory), a consciousness engine, a self-evolving learning loop, an async task system and message/model routing — the "worker agent" counterpart to the Hermes core.',
+    image: '/projects/lobster-core/cover.svg',
+    imageAlt: 'Lobster Agent Core - five-layer harness engineering',
+    categories: ['ai-agents', 'research'],
+    tags: ['Agent Core', 'Harness', 'Memory', 'LLM', 'Python'],
+    technologies: ['Python', 'ChromaDB', 'SQLite', 'LLM', 'Agent Memory'],
+    github: `${GH}/lobster-core`,
+    githubRepo: 'TmxjTmxj/lobster-core',
+    featured: false,
+    year: '2026',
+    role: 'Creator — 1189-line harness, three-tier memory, learning loop, task system, security audit',
+    background:
+      'Standard agents drift: they forget context, run unbounded conversations and have no way to learn from their own failures. The harness approach imposes engineering discipline on the loop itself.',
+    problem:
+      'Long sessions degrade — context bloat, no memory of user preferences, no audit trail for commands, and no mechanism to codify what worked into a reusable skill.',
+    solution:
+      'A master harness that wraps the entire loop: three-tier memory (identity / scene / vector), automatic user-profile learning and memory compaction, command security auditing with configurable rejection, drift detection against a baseline, and a learning loop that records outcomes and auto-creates skills — with subagent delegation standardized and every cross-agent message routed through the orchestrator.',
+    highlights: [
+      '1189-line master harness wrapping the full agent loop',
+      'Three-tier memory: L1 identity / L2 scene / L3 vector (ChromaDB)',
+      'Skill factory: outcomes recorded, skills auto-created from wins',
+      'Command security audit + session freeze + drift detection',
+      'Consciousness engine + async task system + message/model routing',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Software Dev Team Skill',
+    slug: 'software-dev-team-skill',
+    description:
+      'A multi-agent SOP skill pack that turns Claude Code / workbuddy into a disciplined virtual dev team — PM, Architect, Engineer & QA, with workflow routing, feedback loops and an IS_PASS quality gate.',
+    longDescription:
+      'A skill pack (SKILL.md + references + agent definitions) that decomposes a software request into a virtual team collaboration: a coordinator routes work across a Product Manager, Architect, Engineer and QA — each with a distinct persona, tight responsibility boundaries and strict output templates. Four workflow routes (quick mode, BugFix, standard SOP, partial workflows), a requirement-clarification mechanism, explicit feedback loops, an IS_PASS quality gate before QA, and industrial reference specs for coding, scaffolding and test strategy. Ships bilingual (中文 / English).',
+    image: '/projects/software-dev-team-skill/cover.svg',
+    imageAlt: 'Software Dev Team Skill - multi-agent SOP pack',
+    categories: ['ai-agents', 'software', 'open-source'],
+    tags: ['Multi-Agent', 'SOP', 'Skill Pack', 'Claude Code', 'workbuddy'],
+    technologies: ['SKILL.md', 'Multi-Agent', 'Claude Code', 'workbuddy'],
+    github: `${GH}/software-dev-team-skill`,
+    githubRepo: 'TmxjTmxj/software-dev-team-skill',
+    featured: false,
+    year: '2026',
+    role: 'Creator — team model, workflow routing, feedback loops, quality gate, reference specs',
+    background:
+      'The insight that a single AI assistant no longer has to write everything alone: a software request can be decomposed into a disciplined team where the code is a team output produced by SOP. "代码不是一个人写的，是 SOP 产出的团队成果。"',
+    problem:
+      'Single-assistant development produces inconsistent results — no requirements doc, no design, no QA gate, and no way to keep a multi-agent run reproducible and quality-controlled.',
+    solution:
+      'An SOP that formalizes roles: the PM writes the PRD, the architect designs and decomposes tasks, the engineer implements, QA verifies — all routed by a coordinator. Roles carry personas and strict templates, workflows auto-route by request size/type, feedback loops return defects to the correct role, and an IS_PASS gate must be green before code reaches QA.',
+    highlights: [
+      '5 roles with distinct personas + strict output templates',
+      '4 workflow routes: quick, BugFix, standard SOP, partial',
+      'Feedback loops: QA→engineer, architect→PM, engineer→architect',
+      'IS_PASS global consistency gate before QA',
+      'Industrial reference specs: coding standards, scaffolding, QA strategy',
+    ],
+    status: 'maintained',
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);

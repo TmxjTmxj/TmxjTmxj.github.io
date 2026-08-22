@@ -30,7 +30,14 @@ export function ResumePage() {
               <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ink-muted">
                 {t.resume.subtitle}
               </p>
-              <p className="mt-5 font-mono text-sm text-ink-soft">
+
+              {/* Contact strip */}
+              <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-ink-muted">
+                <span className="text-accent">{profile.email}</span>
+                <span>github.com/TmxjTmxj</span>
+                <span>{profile.location}</span>
+              </p>
+              <p className="mt-3 font-mono text-sm text-ink-soft">
                 {t.resume.updated} <span className="text-accent">{profile.resumeUpdated}</span>
               </p>
 

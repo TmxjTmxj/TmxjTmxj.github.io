@@ -17,7 +17,7 @@ export const zhProfile: Partial<typeof profile> = {
   location: '山东大学 · 中国',
   availability: '接受实习与全职机会',
   stats: [
-    { value: '8', label: '项目' },
+    { value: '10', label: '项目' },
     { value: '17', label: 'GitHub 仓库' },
     { value: '7+', label: '构建的 AI Agent' },
     { value: '15+', label: '掌握技术' },
@@ -331,6 +331,48 @@ export const zhProjects: Record<string, Partial<Project>> = {
       { src: '/projects/ansys-mech-sim-cases/screenshot-04.jpg', alt: '缸筒等效应力云图', caption: '缸筒同轴度' },
       { src: '/projects/ansys-mech-sim-cases/screenshot-05.jpg', alt: '涡轮叶片边界条件', caption: '叶片边界条件' },
     ],
+  },
+
+  'lobster-core': {
+    description:
+      '五层全功能 Agent 制造——缰绳工程：一个 1189 行的总控 Harness，叠加记忆分层 + 技能工厂 + 学习循环 + 意识引擎 + 任务系统，含 Subagent 委派与命令安全审计。',
+    longDescription:
+      '对开源 Agent 框架的深度改造实践，核心是一个 1189 行的总控 Harness（缰绳工程）：三阶提示层级、自动更新用户画像、FTS5 精确 → LIKE 模糊 → LLM 语义三合一全文检索、技能目录、标准化 Subagent 委派、命令安全审计、会话冻结与漂移检测、思考链注入。底层配套三级记忆系统（L1 身份 / L2 场景 / L3 ChromaDB 向量）、意识引擎、自我进化学习循环、异步任务系统与消息/模型路由——是 Hermes 核心的「工作型 Agent」对应物。',
+    background:
+      '标准 Agent 会漂移：忘记上下文、对话无界、无法从失败中学习。缰绳工程把工程纪律强加在 Agent 循环本身之上。',
+    problem:
+      '长会话质量下降——上下文膨胀、不记得用户偏好、命令无审计、没有把「做对了什么」固化成可复用技能的机制。',
+    solution:
+      '一个包裹整个循环的总控 Harness：三级记忆（身份 / 场景 / 向量）、自动用户画像学习与记忆压缩、可配置拒绝模式的命令安全审计、相对基线的漂移检测、记录成败并自动创建技能的学习循环——Subagent 委派标准化，跨 Agent 消息统一经编排器中转。',
+    highlights: [
+      '1189 行总控 Harness 包裹完整 Agent 循环',
+      '三级记忆：L1 身份 / L2 场景 / L3 向量（ChromaDB）',
+      '技能工厂：记录成败，从胜利中自动沉淀技能',
+      '命令安全审计 + 会话冻结 + 漂移检测',
+      '意识引擎 + 异步任务系统 + 消息/模型路由',
+    ],
+    role: '创建者——总控 Harness、三级记忆、学习循环、任务系统、安全审计',
+  },
+
+  'software-dev-team-skill': {
+    description:
+      '一套基于 SOP 的多智能体协作技能包——把 Claude Code / workbuddy 变成一支有章法、有灵魂的虚拟开发团队（产品经理、架构师、工程师、QA），含工作流路由、反馈回路与 IS_PASS 质量门禁。',
+    longDescription:
+      '一个技能包（SKILL.md + references + Agent 定义），把一次软件开发请求拆解成虚拟团队的分工协作：主理人负责调度，跨产品经理、架构师、工程师、QA 中转——每位成员都有鲜明人设、独立职责边界与严格输出模板。四种工作流路由（快速模式 / BugFix 快捷路径 / 标准 SOP / 部分工作流）、需求澄清机制、显式反馈回路（QA→工程师、架构师→产品经理）、QA 前的 IS_PASS 全局一致性门禁，以及编码规范 / 脚手架 / 测试策略三大参考规范。支持中英双语。',
+    background:
+      '「代码不是一个人写的，是 SOP 产出的团队成果。」——单个 AI 助手不必扛下所有，一次软件请求可以拆成一支有纪律的虚拟团队来协作。',
+    problem:
+      '单助手开发结果不稳定：没有需求文档、没有设计、没有 QA 门禁，多 Agent 运行也难以复现、质量不可控。',
+    solution:
+      '用 SOP 把角色固化：产品经理写 PRD、架构师做设计并拆解任务、工程师实现、QA 把关——全部经主理人调度与中转。角色带人设与严格模板，工作流按需求规模/类型自动路由，缺陷通过反馈回路回到正确角色，QA 前必须通过 IS_PASS 全局一致性审查。',
+    highlights: [
+      '5 个角色 + 鲜明人设 + 严格输出模板',
+      '4 种工作流路由：快速 / BugFix / 标准 SOP / 部分工作流',
+      '反馈回路：QA→工程师、架构师→产品经理、工程师→架构师',
+      'QA 前 IS_PASS 全局一致性门禁',
+      '工业级参考规范：编码规范、脚手架模板、QA 测试策略',
+    ],
+    role: '创建者——团队模型、工作流路由、反馈回路、质量门禁、参考规范',
   },
 };
 

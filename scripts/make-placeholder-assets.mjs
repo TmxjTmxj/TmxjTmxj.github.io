@@ -416,6 +416,39 @@ const projects = [
     architecture: null,
     shots: [],
   },
+  {
+    slug: 'lobster-core',
+    accent: '#f778ba',
+    cover: {
+      tag: 'agent_core / harness / memory',
+      title: 'Lobster Agent Core',
+      subtitle: 'five-layer agent manufacturing · 1189-line harness',
+      nodes: [
+        [600, 300, 7, 'harness'], [300, 160, 7, 'memory'], [900, 160, 7, 'skills'],
+        [300, 440, 7, 'learning'], [900, 440, 7, 'conscious'], [150, 300, 6], [1050, 300, 6],
+      ],
+      edges: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 3], [2, 4]],
+    },
+    architecture: null,
+    shots: [],
+  },
+  {
+    slug: 'software-dev-team-skill',
+    accent: '#39c5cf',
+    cover: {
+      tag: 'multi_agent / sop / skill_pack',
+      title: 'Software Dev Team Skill',
+      subtitle: 'PM · Architect · Engineer · QA — virtual team by SOP',
+      nodes: [
+        [300, 300, 7, 'coordinator'], [600, 160, 7, 'PM'], [600, 300, 7, 'architect'],
+        [600, 440, 7, 'engineer'], [900, 300, 7, 'QA'], [300, 160, 6], [300, 440, 6],
+        [900, 160, 6], [900, 440, 6], [1000, 600, 6, 'gate'],
+      ],
+      edges: [[0, 1], [0, 2], [0, 3], [0, 4], [1, 2], [2, 3], [3, 4], [4, 9], [0, 5], [0, 6]],
+    },
+    architecture: null,
+    shots: [],
+  },
 ];
 
 /* ------------------------------------------------------------------ */

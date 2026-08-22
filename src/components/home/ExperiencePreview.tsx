@@ -17,6 +17,7 @@ export function ExperiencePreview() {
         <Reveal>
           <SectionHeading
             id="exp-preview-title"
+            index="02"
             label={t.home.experienceLabel}
             title={t.home.experienceTitle}
           />
