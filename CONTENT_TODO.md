@@ -1,6 +1,6 @@
 # CONTENT TODO — 上线前需要你补充的内容
 
-身份、邮箱、GitHub、8 个真实项目的**叙事（background / problem / solution / highlights / challenges / results）与真实图片**已全部接入，叙事素材来自你各仓库的 README（真实赛题、真实指标、真实难点）。
+身份、邮箱、GitHub、10 个真实项目的**叙事（background / problem / solution / highlights / challenges / results）与真实图片**已全部接入，叙事素材来自你各仓库的 README（真实赛题、真实指标、真实难点）。
 以下是**剩余**需要你本人处理的内容，按优先级排列。
 
 ## ✅ 已完成（无需处理）
@@ -13,7 +13,11 @@
 - [x] GitHub 统计模块（实时 16 repos / stars / 语言分布）
 - [x] 经历基于真实公开信息（删除了虚构条目）
 - [x] 深色主题、SEO、404、部署工作流
-- [x] **中英文切换**：导航栏 EN/中 按钮，UI 文案 + 项目/经历/技能内容全量双语（中文叙事取材自仓库 README），选择持久化到 localStorage，自动跟随浏览器语言
+- [x] **中英文切换**：导航栏 EN/中 按钮，UI 文案 + 项目/经历/技能内容全量双语（中文叙事取材自仓库 README），选择持久化到 localStorage
+- [x] **设计 v2（Engineer Blueprint）**：蓝图网格 + 角标 + spec-index 区块 + 滚动进度条 + 导航下划线 + metric 读数 + 终端 READY
+- [x] 新增真实项目：lobster-core（五层 Agent 制造）、software-dev-team-skill（SOP 虚拟团队技能包）
+- [x] 修复：LinkedIn 未配置时不再显示（原占位链接是坏链）；简历页加联系方式条
+- [x] 统计同步：Projects 10 / GitHub 仓库 17 / AI Agents 7+，自动跟随浏览器语言
 
 ## 1. 补几张图（低优先级）
 
