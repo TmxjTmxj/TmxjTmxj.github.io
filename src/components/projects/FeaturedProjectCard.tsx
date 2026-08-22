@@ -1,8 +1,8 @@
 /**
- * Large featured project card: cover + Problem/Solution highlights +
- * tech stack + links. GitHub stars/forks/language are layered on when
- * githubRepo is configured - never required.
- * Receives an already-localized project object from the page.
+ * Large featured project card - the WHOLE card is clickable (stretched
+ * link), with buttons/links raised above it. GitHub stars/forks/language
+ * are layered on when githubRepo is configured. Receives a localized
+ * project object.
  */
 import { Link } from 'react-router-dom';
 import { ArrowRight, CircleDot, GitFork, Github, Star } from 'lucide-react';
@@ -17,14 +17,16 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
   const stats = useRepoStats(project.githubRepo);
 
   return (
-    <article className="card card-accent card-hover grid overflow-hidden lg:grid-cols-[1.05fr_1fr]">
-      {/* Cover */}
+    <article className="card card-accent card-hover stretch-host grid overflow-hidden lg:grid-cols-[1.05fr_1fr]">
+      {/* Stretched link: clicking the whole card opens the case study */}
       <Link
         to={`/projects/${project.slug}`}
-        className="group relative block overflow-hidden border-b border-line bg-surface lg:border-b-0 lg:border-r"
-        aria-label={`${project.title} - ${t.detail.overview}`}
-        tabIndex={-1}
-      >
+        className="stretched"
+        aria-label={`${project.title} — ${t.detail.overview}`}
+      />
+
+      {/* Cover */}
+      <div className="group relative block overflow-hidden border-b border-line bg-surface lg:border-b-0 lg:border-r">
         <img
           src={asset(project.image)}
           alt={project.imageAlt}
@@ -32,9 +34,9 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
           decoding="async"
           width={1200}
           height={800}
-          className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] sm:h-72 lg:h-full lg:min-h-[340px]"
+          className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-[1.04] sm:h-72 lg:h-full lg:min-h-[340px]"
         />
-      </Link>
+      </div>
 
       {/* Content */}
       <div className="flex flex-col p-6 sm:p-8">
@@ -61,7 +63,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        <h3 className="mt-4 text-xl font-bold tracking-tight sm:text-2xl">
+        <h3 className="raised mt-4 text-xl font-bold tracking-tight sm:text-2xl">
           <Link to={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
             {project.title}
           </Link>
@@ -105,7 +107,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
           <Link
             to={`/projects/${project.slug}`}
             className={cn(
-              'inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-hover',
+              'raised inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-colors hover:bg-accent-hover',
             )}
           >
             {t.projects.viewCaseStudy} <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -115,7 +117,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-4 py-2 text-sm text-ink transition-colors hover:border-line-strong hover:bg-elevated"
+              className="raised inline-flex items-center gap-2 rounded-[var(--radius-btn)] border border-line px-4 py-2 text-sm text-ink transition-colors hover:border-line-strong hover:bg-elevated"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
               {t.projects.github}
@@ -126,7 +128,7 @@ export function FeaturedProjectCard({ project }: { project: Project }) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-accent transition-colors hover:text-accent-hover hover:underline"
+              className="raised text-sm text-accent transition-colors hover:text-accent-hover hover:underline"
             >
               {t.projects.demo} ↗
             </a>

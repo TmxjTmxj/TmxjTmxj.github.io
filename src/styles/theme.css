@@ -263,6 +263,34 @@ body {
   .heading-balance {
     text-wrap: balance;
   }
+
+  /* --- Gradient accent text (used sparingly on hero/keywords) --- */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* --- Stretched-link pattern: make a whole card clickable while
+         keeping real buttons/links above it clickable (raised). --- */
+  .stretched {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .raised {
+    position: relative;
+    z-index: 2;
+  }
+  .stretch-host {
+    position: relative;
+  }
+  .stretch-host .stretched:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+    border-radius: var(--radius-card);
+  }
 }
 
 @keyframes blink {

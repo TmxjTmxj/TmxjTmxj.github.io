@@ -1,6 +1,7 @@
 /**
- * Standard project card for the Projects grid: cover, meta, description,
- * tech chips and links. Receives an already-localized project object.
+ * Standard project card - the WHOLE card is clickable (stretched link),
+ * with real buttons/links raised above it so they stay independently
+ * clickable. Receives an already-localized project object.
  */
 import { Link } from 'react-router-dom';
 import { ArrowRight, Github } from 'lucide-react';
@@ -20,13 +21,15 @@ export function ProjectCard({
   const { t } = useI18n();
   const Heading = headingLevel;
   return (
-    <article className="card card-hover group flex h-full flex-col overflow-hidden">
+    <article className="card card-hover stretch-host group flex h-full flex-col overflow-hidden">
+      {/* Stretched link: clicking anywhere on the card opens the case study */}
       <Link
         to={`/projects/${project.slug}`}
-        className="block overflow-hidden border-b border-line"
-        tabIndex={-1}
-        aria-hidden="true"
-      >
+        className="stretched"
+        aria-label={`${project.title} — ${t.detail.overview}`}
+      />
+
+      <div className="block overflow-hidden border-b border-line" aria-hidden="true">
         <img
           src={asset(project.image)}
           alt={project.imageAlt}
@@ -34,9 +37,9 @@ export function ProjectCard({
           decoding="async"
           width={800}
           height={533}
-          className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] sm:h-48"
+          className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.05] sm:h-48"
         />
-      </Link>
+      </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex flex-wrap items-center gap-2">
@@ -45,7 +48,7 @@ export function ProjectCard({
           {project.isPlaceholder && <Badge tone="warn">{t.projects.placeholderBadge}</Badge>}
         </div>
 
-        <Heading className="mt-3 text-lg font-bold tracking-tight">
+        <Heading className="raised mt-3 text-lg font-bold tracking-tight">
           <Link to={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
             {project.title}
           </Link>
@@ -66,7 +69,7 @@ export function ProjectCard({
         <div className="mt-auto flex items-center justify-between border-t border-line pt-4 mt-5">
           <Link
             to={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
+            className="raised inline-flex items-center gap-1.5 py-1.5 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
           >
             {t.projects.viewProject} <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
@@ -75,7 +78,7 @@ export function ProjectCard({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md p-1.5 text-ink-muted transition-colors hover:bg-elevated hover:text-ink"
+              className="raised rounded-md p-1.5 text-ink-muted transition-colors hover:bg-elevated hover:text-ink"
               aria-label={`${project.title} on GitHub`}
             >
               <Github className="h-4.5 w-4.5" aria-hidden="true" />

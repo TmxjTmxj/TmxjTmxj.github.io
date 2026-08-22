@@ -1,12 +1,14 @@
 /**
- * GitHub data - BUILD-TIME FIRST, live API as fallback.
+ * GitHub data - BUILD-TIME FIRST, live API only as last resort.
  * ---------------------------------------------------------------
  * scripts/fetch-github-stats.mjs bakes real stats into
  * public/github-stats.json during every build (authenticated in
- * GitHub Actions). The client reads that file first, so the
- * homepage shows real stars/repos/languages with zero runtime API
- * calls - no rate limits, no console errors. The live API is only
- * used when the static file is missing or older than 24h.
+ * GitHub Actions - refreshed on every deploy). The client ALWAYS reads
+ * that file when present, so the homepage shows real stars/repos/
+ * languages with ZERO runtime API calls - no rate limits, no console
+ * errors, no flaky Lighthouse. The live API is only used when the
+ * build-time file is missing entirely (e.g. local `npm run dev`
+ * without running the fetch script first).
  */
 import { useEffect, useState } from 'react';
 import { asset } from './utils';
@@ -42,7 +44,6 @@ interface StaticStats {
   reposByName: Record<string, RepoStats>;
 }
 
-const STALE_MS = 24 * 60 * 60 * 1000; // refresh live after 24h
 const TTL_MS = 10 * 60 * 1000;
 const cache = new Map<string, { at: number; data: unknown }>();
 
@@ -69,9 +70,7 @@ async function getJSON<T>(url: string): Promise<T> {
 async function loadStaticStats(): Promise<StaticStats | null> {
   if (staticStats !== 'loading') return staticStats;
   try {
-    const res = await fetch(asset('/github-stats.json'), {
-      signal: AbortSignal.timeout(5000),
-    });
+    const res = await fetch(asset('/github-stats.json'), { signal: AbortSignal.timeout(5000) });
     if (!res.ok) throw new Error(`stats file HTTP ${res.status}`);
     staticStats = (await res.json()) as StaticStats;
     return staticStats;
@@ -79,10 +78,6 @@ async function loadStaticStats(): Promise<StaticStats | null> {
     staticStats = null;
     return null;
   }
-}
-
-function isFresh(stats: StaticStats): boolean {
-  return Date.now() - new Date(stats.fetchedAt).getTime() < STALE_MS;
 }
 
 /** Profile + repos for the GitHub statistics section. */
@@ -101,14 +96,13 @@ export function useGitHubProfile(username: string) {
     let cancelled = false;
 
     (async () => {
-      // 1) Build-time data: instant, no API call.
+      // Build-time data first - always preferred, never rate-limited.
       const stats = await loadStaticStats();
-      if (!cancelled && stats && isFresh(stats)) {
+      if (!cancelled && stats) {
         setState({ user: stats.user, repos: stats.repos, loading: false });
         return;
       }
-
-      // 2) Live API fallback (missing or stale file).
+      // Only when no build-time file exists at all -> live API.
       try {
         const [user, repos] = await Promise.all([
           getJSON<GitHubUser>(`https://api.github.com/users/${username}`),
@@ -118,12 +112,7 @@ export function useGitHubProfile(username: string) {
         ]);
         if (!cancelled) setState({ user, repos, loading: false });
       } catch {
-        // Still render the (stale) build-time data if we have it.
-        if (!cancelled && stats) {
-          setState({ user: stats.user, repos: stats.repos, loading: false });
-        } else if (!cancelled) {
-          setState({ user: null, repos: [], loading: false });
-        }
+        if (!cancelled) setState({ user: null, repos: [], loading: false });
       }
     })();
 
@@ -147,15 +136,14 @@ export function useRepoStats(fullName?: string) {
     let cancelled = false;
 
     (async () => {
-      // 1) Build-time data first.
+      // Build-time data first.
       const staticData = await loadStaticStats();
       const baked = staticData?.reposByName[fullName];
-      if (!cancelled && baked && staticData && isFresh(staticData)) {
+      if (!cancelled && baked) {
         setStats(baked);
         return;
       }
-
-      // 2) Live API fallback.
+      // Live API only when the badge wasn't baked at build time.
       try {
         const repo = await cached(`repo:${fullName}`, () =>
           getJSON<{
